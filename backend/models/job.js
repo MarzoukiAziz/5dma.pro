@@ -9,7 +9,7 @@ const jobSchema = mongoose.Schema({
     details: { type: String, required: true },
     function: { type: String, required: true },
     startingDate: { type: String, required: true },
-    deadline: { type: Date, required: false },
+    deadline: { type: String, required: false },
     link: { type: String, required: true },
     company: { type: mongoose.Schema.Types.ObjectId, ref: "Company", required: true }
 });

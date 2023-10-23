@@ -15,6 +15,12 @@ import { CompanyAdminComponent } from './componants/admin/companies/company-admi
 import { EditCompanyComponent } from './componants/admin/companies/edit-company/edit-company.component';
 import { CompaniesClientComponent } from './componants/companies/companies-client/companies-client.component';
 import { CompanyClientComponent } from './componants/companies/company-client/company-client.component';
+import { AddJobComponent } from './componants/admin/jobs/add-job/add-job.component';
+import { EditJobComponent } from './componants/admin/jobs/edit-job/edit-job.component';
+import { JobsAdminComponent } from './componants/admin/jobs/jobs-admin/jobs-admin.component';
+import { JobAdminComponent } from './componants/admin/jobs/job-admin/job-admin.component';
+import { JobsComponent } from './componants/jobs/jobs/jobs.component';
+import { JobDetailComponent } from './componants/jobs/job-detail/job-detail.component';
 
 @NgModule({
   declarations: [
@@ -28,15 +34,16 @@ import { CompanyClientComponent } from './componants/companies/company-client/co
     CompanyAdminComponent,
     EditCompanyComponent,
     CompaniesClientComponent,
-    CompanyClientComponent
+    CompanyClientComponent,
+    AddJobComponent,
+    EditJobComponent,
+    JobsAdminComponent,
+    JobAdminComponent,
+    JobsComponent,
+    JobDetailComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    FormsModule
-  ],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

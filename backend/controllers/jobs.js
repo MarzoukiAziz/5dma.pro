@@ -6,7 +6,7 @@ exports.createJob = (req, res, next) => {
         title: req.body.title,
         contract: req.body.contract,
         location: req.body.location,
-        date: req.body.date,
+        date: new Date(),
         remote: req.body.remote,
         details: req.body.details,
         function: req.body.function,
@@ -52,6 +52,21 @@ exports.getJobs = (req, res, next) => {
                 message: "Jobs fetched successfully!",
                 jobs: fetchedJobs,
                 maxJobs: count
+            });
+        })
+        .catch(error => {
+            res.status(500).json({
+                message: "Fetching Jobs failed!"
+            });
+        });
+};
+
+exports.getAllJobs = (req, res, next) => {
+    Job.find()
+        .then(documents => {
+            res.status(200).json({
+                message: "Jobs fetched successfully!",
+                jobs: documents,
             });
         })
         .catch(error => {

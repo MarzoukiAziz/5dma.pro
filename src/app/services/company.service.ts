@@ -50,6 +50,10 @@ export class CompanyService {
     return this.http.get<Company>(BACKEND_URL + id);
   }
 
+  getAllCompanies() {
+    return this.http.get<Company[]>(BACKEND_URL + 'all');
+  }
+
   deleteCompany(id: string) {
     return this.http.delete(BACKEND_URL + id);
   }
