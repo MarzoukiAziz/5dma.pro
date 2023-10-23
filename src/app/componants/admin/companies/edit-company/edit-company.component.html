@@ -1,0 +1,139 @@
+<title>Modifier Entreprise</title>
+
+<!-- Header Title Start -->
+<section class="inner-header-title blank">
+    <div class="container">
+        <h1>Modifier Entreprise</h1>
+    </div>
+</section>
+<div class="clearfix"></div>
+<!-- Header Title End -->
+
+
+<!-- General Detail Start -->
+<div class="detail-desc section wrapper ">
+    <div class="container white-shadow">
+        <br><br>
+
+        <div class="row bottom-mrg">
+            <form (ngSubmit)="onSubmit()" class="add-feild">
+
+                <div class="col-md-6 col-sm-6">
+                    <div class="input-group">
+
+                        <div class="form-group">
+                            <input class="form-control" type="text" id="name" [(ngModel)]="company.name" name="name"
+                                required placeholder="Nom d'entreprise">
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-sm-6">
+                    <div class="input-group">
+                        <input class="form-control" type="text" id="secteur" [(ngModel)]="company.secteur"
+                            name="secteur" placeholder="Secteur">
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-2">
+                    <h4 style="color: #707c88;margin-top: 15px;">Type d'entreprise:</h4>
+                </div>
+
+                <div class="col-md-4 col-sm-4">
+                    <div class="input-group">
+                        <select class="form-control input-lg" [(ngModel)]="company.type" name="type">
+                            <option value="Grande entreprise">Grande entreprise</option>
+                            <option value="Start-up">Start-up</option>
+                            <option value="PME">PME</option>
+                            <option value="Association / Institution publique / Laboratoire">Association /
+                                Institution publique / Laboratoire </option>
+                            <option value="Collectifs">Collectifs</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6">
+                    <div class="input-group">
+                        <div class="form-group">
+                            <input class="form-control" type="text" id="icon" [(ngModel)]="company.icon" name="icon"
+                                placeholder="Icon url" required>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-md-6 col-sm-6">
+                    <div class="input-group">
+                        <div class="form-group">
+                            <input class="form-control" type="text" id="icon" [(ngModel)]="company.creationDate"
+                                name="creationDate" placeholder="Date de creation" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-sm-6">
+                    <div class="input-group">
+                        <div class="form-group">
+                            <input class="form-control" type="text" id="icon"
+                                [(ngModel)]="company.internationalPresence" name="internationalPresence"
+                                placeholder="Presence international" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-12 col-sm-12">
+                    <textarea class="form-control" placeholder="Description d'entreprise" name="description"
+                        [(ngModel)]="company.description"></textarea>
+                </div>
+
+
+                <div class="col-md-6 col-sm-6">
+                    <div class="input-group">
+                        <span class=""><i class="fa fa-linkedin"></i></span>
+                        <input class="form-control" type="text" id="linkedin" [(ngModel)]="company.linkedin"
+                            name="linkedin" placeholder="Lien de profile Linkedin">
+
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-sm-6">
+                    <div class="input-group">
+                        <span class=""><i class="fa fa-twitter"></i></span>
+                        <input type="text" class="form-control" id="twitter" [(ngModel)]="company.twitter"
+                            name="twitter" placeholder="Lien de profile Twitter">
+
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-sm-6">
+                    <div class="input-group">
+                        <span class=""><i class="fa fa-map-marker"></i></span>
+                        <input type="text" class="form-control" placeholder="Localisation" name="location"
+                            [(ngModel)]="company.location">
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-sm-6">
+                    <div class="input-group">
+                        <span class=""><i class="fa fa-dribbble"></i></span>
+                        <input type="text" class="form-control" placeholder="Site Web" [(ngModel)]="company.website"
+                            name="website">
+                    </div>
+                </div>
+
+                <div class="col-md-12 col-sm-12">
+                    <button type="submit" class="btn btn-success btn-primary small-btn">Modifier</button>
+
+                    <button routerLink="/admin/company/{{company._id}}"
+                        class="btn btn-danger btn-danger small-btn">Annuler</button>
+
+
+
+                </div>
+
+            </form>
+        </div>
+
+
+
+    </div>
+</div>

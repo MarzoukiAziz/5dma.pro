@@ -2,10 +2,13 @@
     <div class="container">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu"><i
                 class="fa fa-bars"></i></button>
-        <div class="navbar-header"><a class="navbar-brand" href="index-2.html"><img src="assets/img/logo-white.png"
-                                                                                    class="logo logo-display"
-                                                                                    alt=""><img
-                src="assets/img/logo-white.png" class="logo logo-scrolled" alt=""></a></div>
-    
+        <div class="navbar-header"><a class="navbar-brand" routerLink="/"><img src="assets/img/logo-white.png"
+                    class="logo logo-display" alt=""><img src="assets/img/logo-white.png" class="logo logo-scrolled"
+                    alt=""></a></div>
+        <ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
+            <li><a routerLink="entreprises"><i class="fa fa-building" aria-hidden="true"></i>Entreprises</a></li>
+            <li><a routerLink="jobs"><i class="fa fa-briefcase" aria-hidden="true"></i>Offres</a></li>
+
+        </ul>
     </div>
 </nav>

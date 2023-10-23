@@ -1,0 +1,79 @@
+<title>Entreprises à découvrir</title>
+
+<!-- Title Header Start -->
+<section class="inner-header-title" style="background-image:url(assets/img/banner-10.jpg);">
+    <div class="container">
+        <h1>Entreprises à découvrir</h1>
+    </div>
+</section>
+<div class="clearfix"></div>
+<!-- Title Header End -->
+
+
+
+<!-- Browse Company List Start -->
+<section class="browse-company">
+    <div class="container">
+
+        <div class="row extra-mrg">
+            <div class="wrap-search-filter">
+                <div class="col-md-7 col-sm-7">
+                    <input type="text" class="form-control" placeholder="Keyword: Name, Tag">
+                </div>
+
+
+                <div class="col-md-2 col-sm-2">
+                    <button type="submit" class="btn btn-warning full-width">Filter</button>
+                </div>
+                <div class="col-md-3 col-sm-3">
+                    <button routerLink="/admin/company/add" class="btn btn-success full-width">Ajouter</button>
+                </div>
+
+            </div>
+        </div>
+        <!-- Single Browse Company -->
+        <div class="item-click" *ngFor="let c of companies">
+            <article>
+                <div class="brows-company">
+                    <div class="col-md-2 col-sm-2">
+                        <div class="brows-company-pic">
+                            <a routerLink="/admin/company/{{c._id}}"><img src="{{c.icon}}" class="img-responsive"
+                                    alt="" /></a>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4">
+                        <div class="brows-company-name">
+                            <a routerLink="/admin/company/{{c._id}}">
+                                <h4>{{c.name}}</h4>
+                            </a>
+                            <span class="brows-company-tagline">{{c.secteur}}</span>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4">
+                        <div class="brows-company-location">
+                            <p><i class="fa fa-map-marker"></i> {{c.location}}</p>
+                        </div>
+                    </div>
+                    <!-- <div class="col-md-2 col-sm-2">
+                        <div class="brows-company-position">
+                            <p>04 Opening</p>
+                        </div>
+                    </div> -->
+                </div>
+            </article>
+        </div>
+        <!-- <div class="row">
+            <ul class="pagination">
+                <li><a href="#">&laquo;</a></li>
+                <li class="active"><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#"><i class="fa fa-ellipsis-h"></i></a></li>
+                <li><a href="#">&raquo;</a></li>
+            </ul>
+        </div> -->
+
+    </div>
+</section>
+<!-- Browse Company List End -->
