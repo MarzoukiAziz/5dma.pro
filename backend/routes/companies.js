@@ -2,7 +2,6 @@ const express = require("express");
 
 const CompanyPostController = require("../controllers/companies");
 
-const extractFile = require("../middleware/file");
 
 const router = express.Router();
 
