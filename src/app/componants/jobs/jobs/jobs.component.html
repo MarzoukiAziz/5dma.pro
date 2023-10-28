@@ -1,1 +1,69 @@
-<p>jobs works!</p>
+<title>Offres</title>
+<div class="clearfix"></div>
+<div class="clearfix"></div>
+
+<!-- Title Header Start -->
+<section class="inner-header-title" style="background-image:url(assets/img/banner-10.jpg);">
+    <div class="container">
+        <h1>Les Offres</h1>
+    </div>
+</section>
+<div class="clearfix"></div>
+<!-- Title Header End -->
+
+<!-- ========== Begin: Brows job Category ===============  -->
+<section class="brows-job-category">
+    <div class="container">
+        <!-- Company Searrch Filter Start -->
+        <div class="row extra-mrg">
+            <div class="wrap-search-filter">
+                <form>
+                    <div class="col-md-8 col-sm-8">
+                        <input type="text" class="form-control" placeholder="Mots clés">
+                    </div>
+
+                    <div class="col-md-4 col-sm-4">
+                        <button type="submit" class="btn btn-success full-width">Filtrer</button>
+                    </div>
+
+
+                </form>
+            </div>
+        </div>
+        <!-- Company Searrch Filter End -->
+
+        <!--Browse Job In Grid-->
+        <div class="row extra-mrg">
+
+            <div *ngFor="let j of jobs" class="col-md-4 col-sm-6">
+                <div class="grid-view brows-job-list" routerLink="/offre/{{j._id}}">
+                    <div class="brows-job-company-img">
+                        <img src="{{j.company.icon}}" class="img-responsive" alt="" />
+                    </div>
+                    <div class="brows-job-position">
+                        <h3>{{j.title}}</h3>
+                        <p><span>{{j.company.name}}</span></p>
+                    </div>
+                    <div class="job-position">
+                        <span class="job-num">{{j.function}}</span>
+                    </div>
+                    <div class="brows-job-type">
+                        <span class="full-time">{{j.contract}}</span>
+                    </div>
+                    <ul class="grid-view-caption">
+                        <li>
+                            <div class="brows-job-location">
+                                <p><i class="fa fa-map-marker"></i>{{j.location}}</p>
+                            </div>
+                        </li>
+
+                    </ul>
+                    <!-- <span class="tg-themetag tg-featuretag">Premium</span> -->
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</section>
+<!-- ========== Begin: Brows job Category End ===============  -->

@@ -1,1 +1,124 @@
-<p>edit-job works!</p>
+<title>Modifier un Offre</title>
+
+<!-- Header Title Start -->
+<section class="inner-header-title blank">
+    <div class="container">
+        <h1>Modifier un Offre</h1>
+    </div>
+</section>
+<div class="clearfix"></div>
+<!-- Header Title End -->
+
+
+<!-- General Detail Start -->
+<div class="detail-desc section wrapper ">
+    <div class="container white-shadow">
+        <br><br>
+
+        <div class="row bottom-mrg">
+            <form (ngSubmit)="onSubmit()" class="add-feild">
+
+                <div class="col-md-6 col-sm-6">
+                    <div class="input-group">
+
+                        <div class="form-group">
+                            <input class="form-control" type="text" [(ngModel)]="job.title" name="title" required
+                                placeholder="Titre d'offre">
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-sm-6">
+                    <div class="input-group">
+                        <input class="form-control" type="text" [(ngModel)]="job.contract" name="contract"
+                            placeholder="Contrat">
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Fonction" name="function"
+                            [(ngModel)]="job.function">
+                    </div>
+                </div>
+
+                <div class="col-md-2 col-sm-2">
+                    <h4 style="color: #707c88;margin-top: 15px;">Entreprise:</h4>
+                </div>
+
+
+                <div class="col-md-4 col-sm-4">
+                    <div class="input-group">
+                        <select class="form-control input-lg" [(ngModel)]="job.company" name="company">
+                            <option *ngFor="let c of companies" [ngValue]="c">{{c.name}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6">
+                    <div class="input-group">
+                        <div class="form-group">
+                            <input class="form-control" type="text" id="icon" [(ngModel)]="job.remote" name="remote"
+                                placeholder="Télétravail" required>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-md-6 col-sm-6">
+                    <div class="input-group">
+                        <div class="form-group">
+                            <input class="form-control" type="text" id="icon" [(ngModel)]="job.startingDate"
+                                name="startingDate" placeholder="Date de début" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-sm-6">
+                    <div class="input-group">
+                        <div class="form-group">
+                            <input class="form-control" type="text" id="icon" [(ngModel)]="job.deadline" name="deadline"
+                                placeholder="Date de fin de candidature" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-12 col-sm-12">
+                    <textarea class="form-control" placeholder="Description d'offre" name="details"
+                        [(ngModel)]="job.details"></textarea>
+                </div>
+
+
+
+
+                <div class="col-md-6 col-sm-6">
+                    <div class="input-group">
+                        <span class=""><i class="fa fa-map-marker"></i></span>
+                        <input type="text" class="form-control" placeholder="Localisation" name="location"
+                            [(ngModel)]="job.location">
+                    </div>
+                </div>
+
+
+                <div class="col-md-6 col-sm-6">
+                    <div class="input-group">
+                        <span class=""><i class="fa fa-dribbble"></i></span>
+                        <input type="text" class="form-control" placeholder="Lien" [(ngModel)]="job.link" name="link">
+                    </div>
+                </div>
+
+                <div class="col-md-12 col-sm-12">
+                    <button type="submit" class="btn btn-success btn-primary small-btn">Modifier</button>
+
+                    <button routerLink="/admin/jobs" class="btn btn-danger btn-danger small-btn">Annuler</button>
+
+
+
+                </div>
+
+            </form>
+        </div>
+
+
+
+    </div>
+</div>

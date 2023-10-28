@@ -78,6 +78,21 @@ exports.getCompany = (req, res, next) => {
         });
 };
 
+exports.getAllCompanies = (req, res, next) => {
+
+    Company.find()
+        .then(documents => {
+            res.status(200).json(
+                documents
+            );
+        })
+        .catch(error => {
+            res.status(500).json({
+                message: "Fetching companies failed!" + error
+            });
+        });
+};
+
 exports.deleteCompany = (req, res, next) => {
     Company.deleteOne({ _id: req.params.id })
         .then(result => {
@@ -119,3 +134,4 @@ exports.updateCompany = (req, res, next) => {
             });
         });
 };
+

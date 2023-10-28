@@ -3,7 +3,6 @@ const JobController = require("../controllers/jobs");
 const extractFile = require("../middleware/file");
 
 const router = express.Router();
-router.get("all", JobController.getAllJobs);
 
 router.post("", extractFile, JobController.createJob);
 router.put("/:id", extractFile, JobController.updateJob);

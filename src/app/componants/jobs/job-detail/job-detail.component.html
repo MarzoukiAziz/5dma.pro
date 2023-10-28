@@ -1,1 +1,103 @@
-<p>job-detail works!</p>
+<title>{{job.title}}</title>
+
+<section class="inner-header-page" style="background: #35434e;">
+    <div class="container">
+
+        <div class="col-md-8">
+            <div class="left-side-container">
+                <div class="freelance-image"><img src="{{job.company.icon}}" class="img-responsive" alt=""></div>
+                <div class="header-details">
+                    <h4>{{job.title}}</h4>
+                    <p style="color: #febe42;">{{job.company.name}}</p>
+                    <p style="color: whitesmoke;font-size: 20px;">
+                        <i class="fa fa-map-marker"></i> {{job.location}}
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 bl-1 br-gary">
+            <div class="right-side-detail">
+                <ul>
+                    <li><span class="detail-info">Contrat</span>{{job.contract}}</li>
+                    <li><span class="detail-info">Télétravail </span>{{job.remote}}</li>
+                    <li><span class="detail-info">Publiée le</span>{{job.date |date: 'dd/MM/yyyy'}}</li>
+                </ul>
+                <ul class="social-info">
+                    <li *ngIf="job.company.twitter"><a href="{{job.company.twitter}}"><i class="fa fa-twitter"></i></a>
+                    </li>
+                    <li *ngIf="job.company.linkedin"><a href="{{job.company.linkedin}}"><i
+                                class="fa fa-linkedin"></i></a></li>
+
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</section>
+<br><br>
+<section>
+    <div class="container">
+
+        <div class="col-md-8 col-sm-8">
+            <div class="container-detail-box">
+
+                <div class="apply-job-detail">
+                    <h5>Requirements</h5>
+                    <ul class="job-requirements">
+                        <li><span>Date de début</span> {{job.startingDate}}</li>
+                        <li><span>Date limite de candidature
+                            </span> {{job.deadline}}</li>
+                        <li><span>Fonction</span>{{job.function}}</li>
+
+                    </ul>
+                    <br><br>
+                    <h5>Description De L'entreprise
+                    </h5>
+
+                </div>
+
+                <div [innerHTML]="content" style="font-family: Montserrat,sans-serif!important;">
+
+                </div>
+                <br>
+
+                <a href="{{job.link}}" target="_blank" class="btn btn-success">Postuler sur le site de l'entreprise</a>
+
+            </div>
+
+
+        </div>
+
+        <!-- Sidebar Start-->
+        <div class="col-md-4 col-sm-4">
+
+            <!-- Job Detail -->
+            <div class="sidebar-container">
+                <div class="sidebar-box" routerLink="/entreprise/{{job.company._id}}">
+                    <span class="sidebar-status">{{job.company.type}}</span>
+                    <div class="sidebar-inner-box">
+                        <br>
+                        <div class="sidebar-box-thumb">
+                            <img src="{{job.company.icon}}" class="img-responsive" alt="" />
+                        </div>
+                        <div class="sidebar-box-detail">
+                            <h4>{{job.company.name}}</h4>
+                            <span class="desination">{{job.company.description}}</span>
+
+                        </div>
+                    </div>
+
+                </div>
+                <a href="{{job.link}}" target="_blank" class="btn btn-sidebar bt-1 bg-success">Postuler sur le site de
+                    l'entreprise</a>
+            </div>
+
+
+
+        </div>
+        <!-- End Sidebar -->
+
+    </div>
+</section>
+<!-- Job Detail End -->

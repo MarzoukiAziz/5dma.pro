@@ -13,7 +13,7 @@ exports.createJob = (req, res, next) => {
         startingDate: req.body.startingDate,
         deadline: req.body.deadline,
         link: req.body.link,
-        company: req.body.company._id // Assuming you pass companyId in the request body
+        company: req.body.company
     });
     job
         .save()
@@ -43,6 +43,7 @@ exports.getJobs = (req, res, next) => {
         jobQuery.skip(pageSize * (currentPage - 1)).limit(pageSize);
     }
     jobQuery
+        .populate('company')
         .then(documents => {
             fetchedJobs = documents;
             return Job.count();
@@ -61,23 +62,11 @@ exports.getJobs = (req, res, next) => {
         });
 };
 
-exports.getAllJobs = (req, res, next) => {
-    Job.find()
-        .then(documents => {
-            res.status(200).json({
-                message: "Jobs fetched successfully!",
-                jobs: documents,
-            });
-        })
-        .catch(error => {
-            res.status(500).json({
-                message: "Fetching Jobs failed!"
-            });
-        });
-};
+
 
 exports.getJob = (req, res, next) => {
     Job.findById(req.params.id)
+        .populate('company')
         .then(job => {
             if (job) {
                 res.status(200).json(job);

@@ -33,17 +33,8 @@
                     </div>
 
                     <div class="col-md-3 no-padd">
-                        <div class="input-group">
-                            <select id="choose-city" class="form-control">
-                                <option>Localisation</option>
-                                <option>Chandigarh</option>
-                                <option>London</option>
-                                <option>England</option>
-                                <option>Pratapcity</option>
-                                <option>Ukrain</option>
-                                <option>Wilangana</option>
-                            </select>
-                        </div>
+                        <div class="input-group"><input type="text" class="form-control br-1" id="joblist"
+                                placeholder="Localisation"></div>
                     </div>
                     <div class="col-md-2 no-padd">
                         <div class="input-group">
@@ -183,223 +174,40 @@
         </div>
         <div class="row">
             <div class="col-md-12">
-                <div class="item-click">
+                <div class="item-click" *ngFor="let j of jobs">
                     <article>
                         <div class="brows-job-list">
                             <div class="col-md-1 col-sm-2 small-padding">
-                                <div class="brows-job-company-img"><a href="job-detail.html"><img
-                                            src="assets/img/com-1.jpg" class="img-responsive" alt="" /></a></div>
+                                <div class="brows-job-company-img"><a><img src="{{j.company.icon}}"
+                                            class="img-responsive" alt="" /></a></div>
                             </div>
                             <div class="col-md-6 col-sm-5">
                                 <div class="brows-job-position">
-                                    <a href="job-detail.html">
-                                        <h3>Digital Marketing Manager</h3>
+                                    <a>
+                                        <h3>{{j.title}}</h3>
                                     </a>
 
-                                    <p><span>Autodesk</span><span class="brows-job-sallery"><i
-                                                class="fa fa-money"></i>$750 - 800</span><span
-                                            class="job-type cl-success bg-trans-success">Full Time</span></p>
+                                    <p><span>{{j.company.name}}</span><span
+                                            class="job-type cl-success bg-trans-success">{{j.contract}}</span></p>
                                 </div>
                             </div>
                             <div class="col-md-3 col-sm-3">
                                 <div class="brows-job-location">
-                                    <p><i class="fa fa-map-marker"></i>QBL Park, C40</p>
+                                    <p><i class="fa fa-map-marker"></i>{{j.location}}</p>
                                 </div>
                             </div>
-                            <div class="col-md-2 col-sm-2">
-                                <div class="brows-job-link"><a href="job-detail.html" class="btn btn-default">Apply
-                                        Job</a></div>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-                <div class="item-click">
-                    <article>
-                        <div class="brows-job-list">
-                            <div class="col-md-1 col-sm-2 small-padding">
-                                <div class="brows-job-company-img"><a href="job-detail.html"><img
-                                            src="assets/img/com-2.jpg" class="img-responsive" alt="" /></a></div>
-                            </div>
-                            <div class="col-md-6 col-sm-5">
-                                <div class="brows-job-position">
-                                    <a href="job-detail.html">
-                                        <h3>Compensation Analyst</h3>
-                                    </a>
 
-                                    <p><span>Google</span><span class="brows-job-sallery"><i
-                                                class="fa fa-money"></i>$810 - 900</span><span
-                                            class="job-type bg-trans-warning cl-warning">Part Time</span></p>
-                                </div>
-                            </div>
-                            <div class="col-md-3 col-sm-3">
-                                <div class="brows-job-location">
-                                    <p><i class="fa fa-map-marker"></i>QBL Park, C40</p>
-                                </div>
-                            </div>
-                            <div class="col-md-2 col-sm-2">
-                                <div class="brows-job-link"><a href="job-detail.html" class="btn btn-default">Apply
-                                        Job</a></div>
-                            </div>
                         </div>
                     </article>
                 </div>
-                <div class="item-click">
-                    <article>
-                        <div class="brows-job-list">
-                            <div class="col-md-1 col-sm-2 small-padding">
-                                <div class="brows-job-company-img"><a href="job-detail.html"><img
-                                            src="assets/img/com-3.jpg" class="img-responsive" alt="" /></a></div>
-                            </div>
-                            <div class="col-md-6 col-sm-5">
-                                <div class="brows-job-position">
-                                    <a href="job-detail.html">
-                                        <h3>Investment Banker</h3>
-                                    </a>
 
-                                    <p><span>Honda</span><span class="brows-job-sallery"><i class="fa fa-money"></i>$800
-                                            - 910</span><span
-                                            class="job-type bg-trans-primary cl-primary">Freelancer</span></p>
-                                </div>
-                            </div>
-                            <div class="col-md-3 col-sm-3">
-                                <div class="brows-job-location">
-                                    <p><i class="fa fa-map-marker"></i>QBL Park, C40</p>
-                                </div>
-                            </div>
-                            <div class="col-md-2 col-sm-2">
-                                <div class="brows-job-link"><a href="job-detail.html" class="btn btn-default">Apply
-                                        Job</a></div>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-                <div class="item-click">
-                    <article>
-                        <div class="brows-job-list">
-                            <div class="col-md-1 col-sm-2 small-padding">
-                                <div class="brows-job-company-img"><a href="job-detail.html"><img
-                                            src="assets/img/com-4.jpg" class="img-responsive" alt="" /></a></div>
-                            </div>
-                            <div class="col-md-6 col-sm-5">
-                                <div class="brows-job-position">
-                                    <a href="job-detail.html">
-                                        <h3>Financial Analyst</h3>
-                                    </a>
-
-                                    <p><span>Microsoft</span><span class="brows-job-sallery"><i
-                                                class="fa fa-money"></i>$580 - 600</span><span
-                                            class="job-type bg-trans-success cl-success">Full Time</span></p>
-                                </div>
-                            </div>
-                            <div class="col-md-3 col-sm-3">
-                                <div class="brows-job-location">
-                                    <p><i class="fa fa-map-marker"></i>QBL Park, C40</p>
-                                </div>
-                            </div>
-                            <div class="col-md-2 col-sm-2">
-                                <div class="brows-job-link"><a href="job-detail.html" class="btn btn-default">Apply
-                                        Job</a></div>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-                <div class="item-click">
-                    <article>
-                        <div class="brows-job-list">
-                            <div class="col-md-1 col-sm-2 small-padding">
-                                <div class="brows-job-company-img"><a href="job-detail.html"><img
-                                            src="assets/img/com-5.jpg" class="img-responsive" alt="" /></a></div>
-                            </div>
-                            <div class="col-md-6 col-sm-5">
-                                <div class="brows-job-position">
-                                    <a href="job-detail.html">
-                                        <h3>Service Representative</h3>
-                                    </a>
-
-                                    <p><span>Autodesk</span><span class="brows-job-sallery"><i
-                                                class="fa fa-money"></i>$800 - 900</span><span
-                                            class="job-type bg-trans-denger cl-danger">Enternship</span></p>
-                                </div>
-                            </div>
-                            <div class="col-md-3 col-sm-3">
-                                <div class="brows-job-location">
-                                    <p><i class="fa fa-map-marker"></i>QBL Park, C40</p>
-                                </div>
-                            </div>
-                            <div class="col-md-2 col-sm-2">
-                                <div class="brows-job-link"><a href="job-detail.html" class="btn btn-default">Apply
-                                        Job</a></div>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-                <div class="item-click">
-                    <article>
-                        <div class="brows-job-list">
-                            <div class="col-md-1 col-sm-2 small-padding">
-                                <div class="brows-job-company-img"><a href="job-detail.html"><img
-                                            src="assets/img/com-6.jpg" class="img-responsive" alt="" /></a></div>
-                            </div>
-                            <div class="col-md-6 col-sm-5">
-                                <div class="brows-job-position">
-                                    <a href="job-detail.html">
-                                        <h3>Chief Executive Officer</h3>
-                                    </a>
-
-                                    <p><span>Google</span><span class="brows-job-sallery"><i
-                                                class="fa fa-money"></i>$510 - 700</span><span
-                                            class="job-type bg-trans-success cl-success">Full Time</span></p>
-                                </div>
-                            </div>
-                            <div class="col-md-3 col-sm-3">
-                                <div class="brows-job-location">
-                                    <p><i class="fa fa-map-marker"></i>QBL Park, C40</p>
-                                </div>
-                            </div>
-                            <div class="col-md-2 col-sm-2">
-                                <div class="brows-job-link"><a href="job-detail.html" class="btn btn-default">Apply
-                                        Job</a></div>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-                <div class="item-click">
-                    <article>
-                        <div class="brows-job-list">
-                            <div class="col-md-1 col-sm-2 small-padding">
-                                <div class="brows-job-company-img"><a href="job-detail.html"><img
-                                            src="assets/img/com-7.jpg" class="img-responsive" alt="" /></a></div>
-                            </div>
-                            <div class="col-md-6 col-sm-5">
-                                <div class="brows-job-position">
-                                    <a href="job-detail.html">
-                                        <h3>Administrative Manager</h3>
-                                    </a>
-
-                                    <p><span>Honda</span><span class="brows-job-sallery"><i class="fa fa-money"></i>$700
-                                            - 800</span><span class="job-type bg-trans-warning cl-warning">Part
-                                            Time</span></p>
-                                </div>
-                            </div>
-                            <div class="col-md-3 col-sm-3">
-                                <div class="brows-job-location">
-                                    <p><i class="fa fa-map-marker"></i>QBL Park, C40</p>
-                                </div>
-                            </div>
-                            <div class="col-md-2 col-sm-2">
-                                <div class="brows-job-link"><a href="job-detail.html" class="btn btn-default">Apply
-                                        Job</a></div>
-                            </div>
-                        </div>
-                    </article>
-                </div>
             </div>
         </div>
         <div style="    margin: 20px;
    text-align: -webkit-center;">
             <a style="color: #07b107;
     font-size: 20px;
-    font-weight: 600;" href="/stages">Voir plus ...</a>
+    font-weight: 600;" href="/offres">Voir plus ...</a>
         </div>
     </div>
 </section>

@@ -50,7 +50,7 @@
                 <div class="col-md-4 col-sm-4">
                     <div class="input-group">
                         <select class="form-control input-lg" [(ngModel)]="job.company" name="company">
-                            <option *ngFor="let c of companies" value="{{c}}">{{c.name}}</option>
+                            <option *ngFor="let c of companies" [ngValue]="c">{{c.name}}</option>
                         </select>
                     </div>
                 </div>
@@ -58,7 +58,7 @@
                     <div class="input-group">
                         <div class="form-group">
                             <input class="form-control" type="text" id="icon" [(ngModel)]="job.remote" name="remote"
-                                placeholder="Télétrravail" required>
+                                placeholder="Télétravail" required>
                         </div>
                     </div>
                 </div>

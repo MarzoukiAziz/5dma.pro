@@ -1,1 +1,155 @@
-<p>job-admin works!</p>
+<title>{{job.title}}</title>
+
+<!-- Title Header Start -->
+<section class="inner-header-title" style="background-image:url(assets/img/banner-10.jpg);">
+    <div class="container">
+        <h1>{{job.title}}</h1>
+    </div>
+</section>
+<div class="clearfix"></div>
+<!-- Title Header End -->
+
+<!-- Company Detail Start -->
+<section class="detail-desc">
+    <div class="container white-shadow">
+
+        <div class="detail-pic">
+            <img src="{{job.company.icon}}" class="img" alt="" />
+        </div>
+
+
+
+        <div class="row">
+            <div class="main-heading">
+                <h4>{{job.company.name}}</h4>
+
+                <button routerLink="/admin/job/{{job._id}}/edit" class="btn btn-warning btn-warning small-btn"
+                    style="margin-right: 20px;">Modifier</button>
+
+                <button (click)="confirmDelete()" class="btn btn-danger btn-dangersmall-btn">Supprimer</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 col-sm-6">
+                <div class="category-box" data-aos="fade-up">
+                    <div class="category-desc">
+                        <div class="category-icon"><i class="fa fa-suitcase"></i></div>
+                        <div class="category-detail category-desc-text">
+                            <h4>{{job.contract}}</h4>
+
+                            <p>Contrat</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="category-box" data-aos="fade-up">
+                    <div class="category-desc">
+                        <div class="category-icon"><i class="fa fa-building"></i></div>
+                        <div class="category-detail category-desc-text">
+                            <h4>{{job.function}}</h4>
+
+                            <p>Fonction</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="col-md-3 col-sm-6">
+                <div class="category-box" data-aos="fade-up">
+                    <div class="category-desc">
+                        <div class="category-icon"><i class="fa fa-calendar"></i></div>
+                        <div class="category-detail category-desc-text">
+                            <h4>{{job.date |date: 'dd/MM/yyyy hh:mm'}}</h4>
+
+                            <p>Date de Creation</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3 col-sm-6">
+                <div class="category-box" data-aos="fade-up">
+                    <div class="category-desc">
+                        <div class="category-icon"><i class="fa fa-map-pin"></i></div>
+                        <div class="category-detail category-desc-text">
+                            <h4>{{job.location}}</h4>
+
+                            <p>Localisation</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-3 col-sm-6">
+                <div class="category-box" data-aos="fade-up">
+                    <div class="category-desc">
+                        <div class="category-icon"><i class="fa fa-home"></i></div>
+                        <div class="category-detail category-desc-text">
+                            <h4>{{job.remote}}</h4>
+
+                            <p>Télétravail</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="category-box" data-aos="fade-up">
+                    <div class="category-desc">
+                        <div class="category-icon"><i class="fa fa-laptop"></i></div>
+                        <div class="category-detail category-desc-text">
+                            <h4><a target="_blank" href="{{job.link}}">lien</a></h4>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3 col-sm-6">
+                <div class="category-box" data-aos="fade-up">
+                    <div class="category-desc">
+                        <div class="category-icon"><i class="fa fa-play"></i></div>
+                        <div class="category-detail category-desc-text">
+                            <h4>{{job.startingDate}}</h4>
+                            <p>Date de début</p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="category-box" data-aos="fade-up">
+                    <div class="category-desc">
+                        <div class="category-icon"><i class="fa fa-hourglass-end"></i></div>
+                        <div class="category-detail category-desc-text">
+                            <h4>{{job.deadline}}</h4>
+                            <p>
+                                Date limite de candidature
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+
+        <br>
+
+        <div class="content">
+            <p [innerHTML]="content">
+
+            </p>
+        </div>
+        <h4 style="float: right;">
+
+            <br>
+            <a routerLink="/admin/jobs">retour aux offres (admin)</a>
+
+        </h4>
+    </div>
+</section>
+
+<!-- Company Detail End -->
