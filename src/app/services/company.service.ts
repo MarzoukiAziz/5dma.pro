@@ -36,13 +36,13 @@ export class CompanyService {
   ): Observable<{
     message: string;
     companies: Company[];
-    maxcompanies: number;
+    maxCompanies: number;
   }> {
     const queryParams = `?pagesize=${companiesPerPage}&page=${currentPage}`;
     return this.http.get<{
       message: string;
       companies: Company[];
-      maxcompanies: number;
+      maxCompanies: number;
     }>(BACKEND_URL + queryParams);
   }
 

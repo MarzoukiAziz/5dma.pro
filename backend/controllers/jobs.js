@@ -13,7 +13,8 @@ exports.createJob = (req, res, next) => {
         startingDate: req.body.startingDate,
         deadline: req.body.deadline,
         link: req.body.link,
-        company: req.body.company
+        company: req.body.company,
+        expired: req.body.expired
     });
     job
         .save()
@@ -34,7 +35,6 @@ exports.createJob = (req, res, next) => {
 };
 
 exports.getJobs = (req, res, next) => {
-
     const pageSize = +req.query.pagesize;
     const currentPage = +req.query.page;
     const jobQuery = Job.find();
@@ -44,6 +44,8 @@ exports.getJobs = (req, res, next) => {
     }
     jobQuery
         .populate('company')
+        .find({ expired: false })
+        .sort({ date: 'desc' })
         .then(documents => {
             fetchedJobs = documents;
             return Job.count();
@@ -61,6 +63,83 @@ exports.getJobs = (req, res, next) => {
             });
         });
 };
+
+exports.filterJobs = (req, res, next) => {
+    const pageSize = +req.query.pagesize;
+    const currentPage = +req.query.page;
+    const keywords = +req.query.keywords;
+    const location = +req.query.keywords;
+    const jobQuery = Job.find();
+
+    const keywordArray = keywords.split(' ').map(keyword => new RegExp(keyword, 'i'));
+
+    let fetchedJobs;
+    if (pageSize && currentPage) {
+        jobQuery.skip(pageSize * (currentPage - 1)).limit(pageSize);
+    }
+    jobQuery
+        .populate('company')
+        .find({ expired: false })
+    find({
+        $and: [
+            {
+                $or: [
+                    { title: keywordArray },
+                    { details: keywordArray },
+                    { function: keywordArray }
+                ]
+            },
+            { location: location }
+        ]
+    })
+        .sort({ date: 'desc' })
+        .then(documents => {
+            fetchedJobs = documents;
+            return Job.count();
+        })
+        .then(count => {
+            res.status(200).json({
+                message: "Jobs fetched successfully!",
+                jobs: fetchedJobs,
+                maxJobs: count
+            });
+        })
+        .catch(error => {
+            res.status(500).json({
+                message: "Fetching Jobs failed!"
+            });
+        });
+};
+
+exports.getAllJobs = (req, res, next) => {
+    const pageSize = +req.query.pagesize;
+    const currentPage = +req.query.page;
+    const jobQuery = Job.find();
+    let fetchedJobs;
+    if (pageSize && currentPage) {
+        jobQuery.skip(pageSize * (currentPage - 1)).limit(pageSize);
+    }
+    jobQuery
+        .populate('company')
+        .sort({ date: 'desc' })
+        .then(documents => {
+            fetchedJobs = documents;
+            return Job.count();
+        })
+        .then(count => {
+            res.status(200).json({
+                message: "Jobs fetched successfully!",
+                jobs: fetchedJobs,
+                maxJobs: count
+            });
+        })
+        .catch(error => {
+            res.status(500).json({
+                message: "Fetching Jobs failed!"
+            });
+        });
+};
+
 
 
 
@@ -106,7 +185,9 @@ exports.updateJob = (req, res, next) => {
         startingDate: req.body.startingDate,
         deadline: req.body.deadline,
         link: req.body.link,
-        company: req.body.companyId // Assuming you pass companyId in the request body
+        company: req.body.companyId,
+        expired: req.body.expired
+
     });
     Job.updateOne({ _id: req.params.id }, job)
         .then(result => {

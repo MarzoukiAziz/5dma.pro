@@ -18,8 +18,11 @@
         <div class="row extra-mrg">
             <div class="wrap-search-filter">
                 <form>
-                    <div class="col-md-8 col-sm-8">
+                    <div class="col-md-5 col-sm-5">
                         <input type="text" class="form-control" placeholder="Mots clés">
+                    </div>
+                    <div class="col-md-3 col-sm-3">
+                        <input type="text" class="form-control" placeholder="Localisation">
                     </div>
 
                     <div class="col-md-4 col-sm-4">
@@ -50,12 +53,12 @@
                     <div class="brows-job-type">
                         <span class="full-time">{{j.contract}}</span>
                     </div>
+
                     <ul class="grid-view-caption">
-                        <li>
-                            <div class="brows-job-location">
-                                <p><i class="fa fa-map-marker"></i>{{j.location}}</p>
-                            </div>
-                        </li>
+                        <div class="brows-job-location" style="margin: auto !important; padding: 15px 0px;
+                        width: fit-content;">
+                            <p><i class="fa fa-map-marker"></i>&nbsp;&nbsp;{{j.location}}</p>
+                        </div>
 
                     </ul>
                     <!-- <span class="tg-themetag tg-featuretag">Premium</span> -->
@@ -64,6 +67,8 @@
 
 
         </div>
+        <mat-paginator [length]="jobsCount" [pageSize]="jobsPerPage" *ngIf="jobs.length > 0"
+            [pageSizeOptions]="pageSizeOptions" (page)="onChangedPage($event)"></mat-paginator>
     </div>
 </section>
 <!-- ========== Begin: Brows job Category End ===============  -->

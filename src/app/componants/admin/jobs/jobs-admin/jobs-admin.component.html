@@ -58,12 +58,14 @@
                         </li>
 
                     </ul>
-                    <!-- <span class="tg-themetag tg-featuretag">Premium</span> -->
+                    <span *ngIf="j.expired" class="tg-themetag tg-featuretag">Expired</span>
                 </div>
             </div>
 
 
         </div>
+        <mat-paginator [length]="jobsCount" [pageSize]="jobsPerPage" *ngIf="jobs.length > 0"
+            [pageSizeOptions]="pageSizeOptions" (page)="onChangedPage($event)"></mat-paginator>
     </div>
 </section>
 <!-- ========== Begin: Brows job Category End ===============  -->

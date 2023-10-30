@@ -37,6 +37,28 @@ export class JobService {
     );
   }
 
+  filtrerJobs(
+    jobsPerPage: number,
+    currentPage: number,
+    keywords: string,
+    location: string
+  ): Observable<{ message: string; jobs: Job[]; maxJobs: number }> {
+    const queryParams = `?pagesize=${jobsPerPage}&page=${currentPage}`;
+    return this.http.get<{ message: string; jobs: Job[]; maxJobs: number }>(
+      BACKEND_URL + queryParams
+    );
+  }
+
+  getAllJobs(
+    jobsPerPage: number,
+    currentPage: number
+  ): Observable<{ message: string; jobs: Job[]; maxJobs: number }> {
+    const queryParams = `?pagesize=${jobsPerPage}&page=${currentPage}`;
+    return this.http.get<{ message: string; jobs: Job[]; maxJobs: number }>(
+      BACKEND_URL + '/all' + queryParams
+    );
+  }
+
   getJob(id: string) {
     return this.http.get<Job>(BACKEND_URL + id);
   }

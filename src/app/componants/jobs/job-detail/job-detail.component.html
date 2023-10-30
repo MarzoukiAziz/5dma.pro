@@ -6,6 +6,7 @@
         <div class="col-md-8">
             <div class="left-side-container">
                 <div class="freelance-image"><img src="{{job.company.icon}}" class="img-responsive" alt=""></div>
+                <br>
                 <div class="header-details">
                     <h4>{{job.title}}</h4>
                     <p style="color: #febe42;">{{job.company.name}}</p>
@@ -57,7 +58,7 @@
 
                 </div>
 
-                <div [innerHTML]="content" style="font-family: Montserrat,sans-serif!important;">
+                <div [innerHTML]="content" style="color: black !important;">
 
                 </div>
                 <br>
@@ -78,7 +79,7 @@
                     <span class="sidebar-status">{{job.company.type}}</span>
                     <div class="sidebar-inner-box">
                         <br>
-                        <div class="sidebar-box-thumb">
+                        <div>
                             <img src="{{job.company.icon}}" class="img-responsive" alt="" />
                         </div>
                         <div class="sidebar-box-detail">

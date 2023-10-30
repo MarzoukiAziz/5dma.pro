@@ -21,6 +21,8 @@ import { JobsAdminComponent } from './componants/admin/jobs/jobs-admin/jobs-admi
 import { JobAdminComponent } from './componants/admin/jobs/job-admin/job-admin.component';
 import { JobsComponent } from './componants/jobs/jobs/jobs.component';
 import { JobDetailComponent } from './componants/jobs/job-detail/job-detail.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,14 @@ import { JobDetailComponent } from './componants/jobs/job-detail/job-detail.comp
     JobsComponent,
     JobDetailComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    BrowserAnimationsModule,
+    MatPaginatorModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

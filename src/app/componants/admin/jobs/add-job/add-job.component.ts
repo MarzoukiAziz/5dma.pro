@@ -28,7 +28,7 @@ export class AddJobComponent implements OnInit {
 
   onSubmit() {
     if (this.job) {
-      console.log(this.job);
+      this.job.expired = false;
       this._service.addJob(this.job);
     }
   }

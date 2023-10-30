@@ -57,7 +57,7 @@
                 <div class="col-md-6 col-sm-6">
                     <div class="input-group">
                         <div class="form-group">
-                            <input class="form-control" type="text" id="icon" [(ngModel)]="job.remote" name="remote"
+                            <input class="form-control" type="text" [(ngModel)]="job.remote" name="remote"
                                 placeholder="Télétravail" required>
                         </div>
                     </div>
@@ -67,8 +67,8 @@
                 <div class="col-md-6 col-sm-6">
                     <div class="input-group">
                         <div class="form-group">
-                            <input class="form-control" type="text" id="icon" [(ngModel)]="job.startingDate"
-                                name="startingDate" placeholder="Date de début" required>
+                            <input class="form-control" type="text" [(ngModel)]="job.startingDate" name="startingDate"
+                                placeholder="Date de début" required>
                         </div>
                     </div>
                 </div>
@@ -76,11 +76,30 @@
                 <div class="col-md-6 col-sm-6">
                     <div class="input-group">
                         <div class="form-group">
-                            <input class="form-control" type="text" id="icon" [(ngModel)]="job.deadline" name="deadline"
+                            <input class="form-control" type="text" [(ngModel)]="job.deadline" name="deadline"
                                 placeholder="Date de fin de candidature" required>
                         </div>
                     </div>
                 </div>
+                <div class="col-md-6 col-sm-6">
+
+                    <div class="input-group">
+                        <div class="form-group">
+                            <span>Expiré ?</span>
+                            <div>
+                                <label>
+                                    <input type="radio" name="expired" [(ngModel)]="job.expired" [value]="true"> Yes
+                                </label>
+                                <label>
+                                    <input type="radio" name="expired" [(ngModel)]="job.expired" [value]="false"> No
+                                </label>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
 
                 <div class="col-md-12 col-sm-12">
                     <textarea class="form-control" placeholder="Description d'offre" name="details"

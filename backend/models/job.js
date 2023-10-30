@@ -11,6 +11,7 @@ const jobSchema = mongoose.Schema({
     startingDate: { type: String, required: true },
     deadline: { type: String, required: false },
     link: { type: String, required: true },
+    expired: { type: Boolean, required: true },
     company: { type: mongoose.Schema.Types.ObjectId, ref: "Company", required: true }
 });
 

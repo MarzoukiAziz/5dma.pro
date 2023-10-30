@@ -14,4 +14,5 @@ export class Job {
   deadline?: string;
   link?: string;
   company?: Company;
+  expired?: Boolean;
 }

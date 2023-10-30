@@ -52,7 +52,7 @@ exports.getCompanies = (req, res, next) => {
             res.status(200).json({
                 message: "Companies fetched successfully!",
                 companies: fetchedCompanies,
-                maxPosts: count
+                maxCompanies: count
             });
         })
         .catch(error => {

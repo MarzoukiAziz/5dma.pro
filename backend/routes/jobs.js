@@ -6,6 +6,10 @@ const router = express.Router();
 
 router.post("", extractFile, JobController.createJob);
 router.put("/:id", extractFile, JobController.updateJob);
+router.get("/all", JobController.getAllJobs);
+router.get("/filter", JobController.filterJobs);
+
+
 router.get("", JobController.getJobs);
 router.get("/:id", JobController.getJob);
 router.delete("/:id", JobController.deleteJob);
