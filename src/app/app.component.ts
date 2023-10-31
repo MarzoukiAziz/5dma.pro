@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'body',
@@ -6,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = '5dma';
+  constructor(private authService: AuthService) {}
+
+  ngOnInit() {
+    this.authService.autoAuthUser();
+  }
 }

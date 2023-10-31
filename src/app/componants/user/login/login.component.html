@@ -1,0 +1,60 @@
+<title>Connexion</title>
+
+<div class="body">
+    <div>
+        <a href="/"><img class="logo-image" src="assets/img/logo-white.png" alt="alternative"></a>
+    </div>
+    <mat-spinner *ngIf="isLoading"></mat-spinner>
+
+    <div class="container" *ngIf="!isLoading">
+        <header>Connexion</header>
+
+        <form *ngIf="!isSuccessful" name="form" (ngSubmit)="f.form.valid && onLogin()" #f="ngForm" novalidate>
+            <div class="form first" style="    width: -webkit-fill-available;">
+
+                <div class="details ID">
+                    <span class="title">Email</span>
+                    <div class="fields">
+
+
+                        <div class="input-field" style="width: calc(100% )!important;">
+                            <input type="email" placeholder="hello@example.com" type="email" name="email"
+                                [(ngModel)]="form.email" required email #email="ngModel">
+                            <div class="alert-danger" *ngIf="f.submitted && email.invalid">
+                                <div *ngIf="email.errors && email.errors['required']">L'e-mail est requis</div>
+                                <div *ngIf="email.errors && email.errors['email']">
+                                    L'e-mail doit être une adresse e-mail valide </div>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="title">Mot de Passe</span>
+                    <div class="fields">
+                        <div class="input-field" style="width: calc(100% )!important;">
+                            <input type="password" type="password" name="password" [(ngModel)]="form.password" required
+                                placeholder="************" minlength="6" #password="ngModel">
+                            <div class="alert-danger" *ngIf="f.submitted && password.invalid">
+                                <div *ngIf="password.errors && password.errors['required']">Le mot de passe est requis
+                                </div>
+                                <div *ngIf="password.errors && password.errors['minlength']">
+                                    Password must be at least 6 characters
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="nextBtn">
+                        <span class="btnText">Confirmer</span>
+                        <i class="uil uil-navigator"></i>
+                    </button>
+                    <br>
+                    <h2 style="    text-align: -webkit-center;
+                    ">
+                        Pas encore de compte ? <a style="    color: black;
+                        font-weight: bolder;" routerLink="/inscription">S'inscrire</a>
+                    </h2>
+
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>

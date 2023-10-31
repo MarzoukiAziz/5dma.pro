@@ -8,7 +8,6 @@ import { FooterComponent } from './componants/common/footer/footer.component';
 import { HomeComponent } from './componants/home/home.component';
 import { AddComponent } from './componants/admin/companies/add/add.component';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
 import { CompaniesAdminComponent } from './componants/admin/companies/companies-admin/companies-admin.component';
 import { CompanyAdminComponent } from './componants/admin/companies/company-admin/company-admin.component';
 import { EditCompanyComponent } from './componants/admin/companies/edit-company/edit-company.component';
@@ -24,6 +23,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatChipsModule } from '@angular/material/chips';
 import { JobSearchComponent } from './componants/jobs/job-search/job-search.component';
+import { SignupComponent } from './componants/user/signup/signup.component';
+import { LoginComponent } from './componants/user/login/login.component';
+import { AccountComponent } from './componants/user/account/account.component';
+import { ApplicationsComponent } from './componants/user/applications/applications.component';
+import { EditUserComponent } from './componants/user/edit-user/edit-user.component';
+import { ChangePasswordsComponent } from './componants/user/change-passwords/change-passwords.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './auth/auth-interceptor';
+import { ErrorInterceptor } from './error-interceptor';
 
 @NgModule({
   declarations: [
@@ -45,6 +54,12 @@ import { JobSearchComponent } from './componants/jobs/job-search/job-search.comp
     JobsComponent,
     JobDetailComponent,
     JobSearchComponent,
+    SignupComponent,
+    LoginComponent,
+    AccountComponent,
+    ApplicationsComponent,
+    EditUserComponent,
+    ChangePasswordsComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,8 +69,12 @@ import { JobSearchComponent } from './componants/jobs/job-search/job-search.comp
     BrowserAnimationsModule,
     MatPaginatorModule,
     MatChipsModule,
+    MatProgressSpinnerModule,
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

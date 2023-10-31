@@ -5,14 +5,15 @@ const mongoose = require("mongoose");
 
 const companyRoutes = require("./routes/companies");
 const jobRoutes = require("./routes/jobs");
+const userRoutes = require("./routes/user");
+
 
 const app = express();
 
 mongoose
     .connect(
         "mongodb+srv://moazmar:" +
-        // process.env.MONGO_ATLAS_PW +
-        "ISSATSO2023rades" +
+        process.env.MONGO_ATLAS_PW +
         "@5dma.kq63drg.mongodb.net/?retryWrites=true&w=majority"
 
     )
@@ -44,6 +45,7 @@ app.use((req, res, next) => {
 
 app.use("/api/companies", companyRoutes);
 app.use("/api/jobs", jobRoutes);
+app.use("/api/users", userRoutes);
 
 app.use((req, res, next) => {
     res.sendFile(path.join(__dirname, "angular", "index.html"));

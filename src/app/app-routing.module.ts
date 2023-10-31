@@ -15,12 +15,28 @@ import { HomeComponent } from './componants/home/home.component';
 import { JobDetailComponent } from './componants/jobs/job-detail/job-detail.component';
 import { JobSearchComponent } from './componants/jobs/job-search/job-search.component';
 import { JobsComponent } from './componants/jobs/jobs/jobs.component';
+import { AccountComponent } from './componants/user/account/account.component';
+import { LoginComponent } from './componants/user/login/login.component';
+import { SignupComponent } from './componants/user/signup/signup.component';
 
 const routes: Routes = [
+  {
+    path: 'inscription',
+    component: SignupComponent,
+  },
+  {
+    path: 'connexion',
+    component: LoginComponent,
+  },
+
   {
     path: '',
     component: TemplateComponent,
     children: [
+      {
+        path: 'moncompte',
+        component: AccountComponent,
+      },
       {
         path: 'admin/company/add',
         component: AddComponent,

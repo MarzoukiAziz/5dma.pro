@@ -1,0 +1,125 @@
+<title>Inscription</title>
+
+<div class="body">
+    <div>
+        <a href="/"><img class="logo-image" src="assets/img/logo-white.png" alt="alternative"></a>
+    </div>
+    <mat-spinner *ngIf="isLoading"></mat-spinner>
+
+    <div class="container">
+        <header>Inscription</header>
+
+        <form *ngIf="!isSuccessful" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+            <div class="form first" style="    width: -webkit-fill-available;">
+                <div class="details personal">
+                    <span class="title">Détails personnels</span>
+                    <div class="fields">
+                        <div class="input-field">
+                            <label>Nom</label>
+                            <input type="text" placeholder="Nom" type="text" name="lname" [(ngModel)]="form.lname"
+                                required minlength="2" maxlength="20" #lname="ngModel">
+                            <div class="alert-danger" *ngIf="f.submitted && lname.invalid">
+                                <div *ngIf="lname.errors && lname.errors['required']">Le nom est requis</div>
+                                <div *ngIf="lname.errors  && lname.errors['minlength']">
+                                    Le nom doit comporter au moins 2 caractères </div>
+                                <div *ngIf="lname.errors && lname.errors['maxlength']">
+                                    Le nom doit comporter au maximum 20 caractères </div>
+                            </div>
+                        </div>
+                        <div class="input-field">
+                            <label>Prénom</label>
+                            <input type="text" placeholder="Prénom" type="text" name="fname" [(ngModel)]="form.fname"
+                                required minlength="2" maxlength="20" #fname="ngModel">
+                            <div class="alert-danger" *ngIf="f.submitted && fname.invalid">
+                                <div *ngIf="fname.errors && fname.errors['required']">Le prénom est requis</div>
+                                <div *ngIf="fname.errors  && fname.errors['minlength']">
+                                    Le prénom doit comporter au moins 2 caractères </div>
+
+                                <div *ngIf="fname.errors && fname.errors['maxlength']">
+                                    Le prénom doit comporter au maximum 20 caractères </div>
+                            </div>
+                        </div>
+                        <div class="input-field">
+                            <label>Email</label>
+                            <input type="email" placeholder="hello@example.com" type="email" name="email"
+                                [(ngModel)]="form.email" required email #email="ngModel">
+                            <div class="alert-danger" *ngIf="f.submitted && email.invalid">
+                                <div *ngIf="email.errors && email.errors['required']">L'e-mail est requis</div>
+                                <div *ngIf="email.errors && email.errors['email']">
+                                    L'e-mail doit être une adresse e-mail valide </div>
+                            </div>
+                        </div>
+
+                        <div class="input-field">
+                            <label>Genre</label>
+                            <select required [(ngModel)]="form.gender" required #gender="ngModel" name="gender">
+                                <option disabled selected>Sélectionner un genre</option>
+                                <option value="male">Homme</option>
+                                <option value="female">Femme</option>
+                                <option value="others">Non Spécifié</option>
+                            </select>
+                            <div class="alert-danger" *ngIf="f.submitted && gender.invalid">
+                                <div *ngIf="gender.errors && gender.errors['required']">Le genre est requis</div>
+                            </div>
+
+                        </div>
+
+
+                        <div class="input-field">
+                            <label>Pays</label>
+                            <select required [(ngModel)]="form.country" required #country="ngModel" name="country">
+                                <option disabled selected>Sélectionner un pays</option>
+                                <option *ngFor="let c of countries" value="{{c}}">{{c}}</option>
+
+                            </select>
+                            <div class="alert-danger" *ngIf="f.submitted && country.invalid">
+                                <div *ngIf="country.errors && country.errors['required']">Le pays est requis</div>
+                            </div>
+
+                        </div>
+                        <div class="input-field">
+                            <label>Téléphone</label>
+                            <input type="number" placeholder="Téléphone" name="phone" [(ngModel)]="form.phone" required
+                                phone #phone="ngModel">
+                            <div class="alert-danger" *ngIf="f.submitted && phone.invalid">
+                                <div *ngIf="phone.errors && phone.errors['required']">Le téléphone est requis</div>
+
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+                <div class="details ID">
+                    <span class="title">Mot de Passe</span>
+                    <div class="fields">
+                        <div class="input-field" style="width: calc(100% )!important;">
+                            <input type="password" value="Password" type="password" name="password"
+                                [(ngModel)]="form.password" required placeholder="Tapez votre mot de passe"
+                                minlength="6" #password="ngModel">
+                            <div class="alert-danger" *ngIf="f.submitted && password.invalid">
+                                <div *ngIf="password.errors && password.errors['required']">Le mot de passe est requis
+                                </div>
+                                <div *ngIf="password.errors && password.errors['minlength']">
+                                    Password must be at least 6 characters
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="nextBtn">
+                        <span class="btnText">Confirmer</span>
+                        <i class="uil uil-navigator"></i>
+                    </button>
+
+                    <br>
+                    <h2 style="    text-align: -webkit-center;
+                    "> Déjà un compte ? <a style="    color: black;
+                        font-weight: bolder;" routerLink="/connexion"> Connectez-vous</a>
+                    </h2>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
