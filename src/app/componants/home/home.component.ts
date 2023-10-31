@@ -3,6 +3,7 @@ import { Job } from 'src/app/models/Job';
 import { CompanyService } from 'src/app/services/company.service';
 import { map } from 'rxjs/operators';
 import { JobService } from 'src/app/services/jobs.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -11,7 +12,9 @@ import { JobService } from 'src/app/services/jobs.service';
 export class HomeComponent {
   jobs: Job[];
   jobsCount: number;
-  constructor(private _service: JobService) {
+  keywords = '';
+  location = '';
+  constructor(private _service: JobService, private router: Router) {
     this._service
       .getJobs(8, 1)
       .pipe(
@@ -25,8 +28,12 @@ export class HomeComponent {
       .subscribe((transformedCompaniesData) => {
         this.jobs = transformedCompaniesData.jobs;
         this.jobsCount = transformedCompaniesData.jobsCount;
-
-        console.log(this.jobs);
       });
+  }
+
+  onSubmit() {
+    this.router.navigate(['/offres/recherche'], {
+      queryParams: { keywords: this.keywords, location: this.location },
+    });
   }
 }

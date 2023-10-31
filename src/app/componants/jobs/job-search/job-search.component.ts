@@ -1,17 +1,18 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Job } from 'src/app/models/Job';
+import { CompanyService } from 'src/app/services/company.service';
 import { map } from 'rxjs/operators';
 import { JobService } from 'src/app/services/jobs.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { Subscription } from 'rxjs';
 import { PageEvent } from '@angular/material/paginator';
-
 @Component({
-  selector: 'app-jobs',
-  templateUrl: './jobs.component.html',
-  styleUrls: ['./jobs.component.css'],
+  selector: 'app-job-search',
+  templateUrl: './job-search.component.html',
+  styleUrls: ['./job-search.component.css'],
 })
-export class JobsComponent implements OnInit, OnDestroy {
+export class JobSearchComponent {
   jobs: Job[];
   jobsCount: number;
 
@@ -23,11 +24,18 @@ export class JobsComponent implements OnInit, OnDestroy {
   keywords = '';
   range = '';
 
-  constructor(private _service: JobService) {}
+  constructor(
+    private _service: JobService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {}
 
   ngOnInit() {
-    this.getData();
-    const currentDate = new Date();
+    this.route.queryParams.subscribe((params) => {
+      this.keywords = params['keywords'];
+      this.location = params['location'];
+      this.getData();
+    });
   }
 
   onChangedPage(event: PageEvent) {

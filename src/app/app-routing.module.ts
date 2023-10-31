@@ -13,6 +13,7 @@ import { CompaniesClientComponent } from './componants/companies/companies-clien
 import { CompanyClientComponent } from './componants/companies/company-client/company-client.component';
 import { HomeComponent } from './componants/home/home.component';
 import { JobDetailComponent } from './componants/jobs/job-detail/job-detail.component';
+import { JobSearchComponent } from './componants/jobs/job-search/job-search.component';
 import { JobsComponent } from './componants/jobs/jobs/jobs.component';
 
 const routes: Routes = [
@@ -64,6 +65,10 @@ const routes: Routes = [
       {
         path: 'offres',
         component: JobsComponent,
+      },
+      {
+        path: 'offres/recherche',
+        component: JobSearchComponent,
       },
       {
         path: 'offre/:id',

@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TemplateComponent } from './componants/common/template/template.component';
@@ -24,6 +23,7 @@ import { JobDetailComponent } from './componants/jobs/job-detail/job-detail.comp
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatChipsModule } from '@angular/material/chips';
+import { JobSearchComponent } from './componants/jobs/job-search/job-search.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +44,7 @@ import { MatChipsModule } from '@angular/material/chips';
     JobAdminComponent,
     JobsComponent,
     JobDetailComponent,
+    JobSearchComponent,
   ],
   imports: [
     BrowserModule,
