@@ -8,11 +8,11 @@ router.post("/sign-up", UserController.createUser);
 
 router.post("/login", UserController.userLogin);
 
-router.put("/user/:id/update-password", UserController.updatePassword);
+router.put("/update-password/:id", UserController.updatePassword);
 
-router.put("/user/:id/update", UserController.updateUser);
+router.put("/update", UserController.updateUser);
 
-router.get("/all-users", UserController.getUsers);
+router.get("/all", UserController.getUsers);
 
 router.get("/:id", UserController.getUser);
 

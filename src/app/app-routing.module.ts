@@ -4,10 +4,12 @@ import { AddComponent } from './componants/admin/companies/add/add.component';
 import { CompaniesAdminComponent } from './componants/admin/companies/companies-admin/companies-admin.component';
 import { CompanyAdminComponent } from './componants/admin/companies/company-admin/company-admin.component';
 import { EditCompanyComponent } from './componants/admin/companies/edit-company/edit-company.component';
+import { DashboardComponent } from './componants/admin/dashboard/dashboard.component';
 import { AddJobComponent } from './componants/admin/jobs/add-job/add-job.component';
 import { EditJobComponent } from './componants/admin/jobs/edit-job/edit-job.component';
 import { JobAdminComponent } from './componants/admin/jobs/job-admin/job-admin.component';
 import { JobsAdminComponent } from './componants/admin/jobs/jobs-admin/jobs-admin.component';
+import { UsersComponent } from './componants/admin/users/users.component';
 import { TemplateComponent } from './componants/common/template/template.component';
 import { CompaniesClientComponent } from './componants/companies/companies-client/companies-client.component';
 import { CompanyClientComponent } from './componants/companies/company-client/company-client.component';
@@ -16,6 +18,8 @@ import { JobDetailComponent } from './componants/jobs/job-detail/job-detail.comp
 import { JobSearchComponent } from './componants/jobs/job-search/job-search.component';
 import { JobsComponent } from './componants/jobs/jobs/jobs.component';
 import { AccountComponent } from './componants/user/account/account.component';
+import { ChangePasswordsComponent } from './componants/user/change-passwords/change-passwords.component';
+import { EditUserComponent } from './componants/user/edit-user/edit-user.component';
 import { LoginComponent } from './componants/user/login/login.component';
 import { SignupComponent } from './componants/user/signup/signup.component';
 
@@ -36,6 +40,18 @@ const routes: Routes = [
       {
         path: 'moncompte',
         component: AccountComponent,
+      },
+      {
+        path: 'modifier-info',
+        component: EditUserComponent,
+      },
+      {
+        path: 'modifier-mdp',
+        component: ChangePasswordsComponent,
+      },
+      {
+        path: 'admin',
+        component: DashboardComponent,
       },
       {
         path: 'admin/company/add',
@@ -69,6 +85,10 @@ const routes: Routes = [
       {
         path: 'admin/job/:id/edit',
         component: EditJobComponent,
+      },
+      {
+        path: 'admin/users',
+        component: UsersComponent,
       },
       {
         path: 'entreprises',

@@ -1,1 +1,98 @@
-<p>edit-user works!</p>
+<title>Modifier Mes Informations</title>
+
+<!-- Header Title Start -->
+<section class="inner-header-title blank">
+    <div class="container">
+        <h1>Modifier Mes Informations</h1>
+    </div>
+</section>
+<!-- Header Title End -->
+
+<!-- General Detail Start -->
+<div class="section detail-desc" *ngIf="user">
+    <div class="container white-shadow">
+
+        <div class="row">
+            <div class="detail-pic js">
+                <img src="assets/img/{{user.gender=='male'?'homme':user.gender=='female'?'femme':'autre'}}.png"
+                    class="img" alt="" />
+            </div>
+        </div>
+        <div class="row bottom-mrg">
+
+            <form class="add-feild">
+                <br><br>
+
+                <div class="col-md-6 col-sm-6">
+                    <div class="input-group">
+                        <label>Nom</label>
+                        <input type="text" class="form-control" placeholder="Nom" [(ngModel)]="user.lname" required
+                            name="lname">
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6">
+                    <div class="input-group">
+                        <label>Prénom</label>
+
+                        <input type="text" class="form-control" placeholder="Prénom" [(ngModel)]="user.fname" required
+                            name="fname">
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-sm-6">
+                    <div class="input-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" placeholder="Email" [(ngModel)]="user.email" required
+                            name="email">
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-sm-6">
+                    <div class="input-group">
+                        <label for="phone">Téléphone</label>
+                        <input type="number" class="form-control" placeholder="phone" [(ngModel)]="user.phone" required
+                            name="phone">
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-sm-6">
+                    <div class="input-group">
+                        <label>Genre</label>
+                        <select required [(ngModel)]="user.gender" required name="gender" class="form-control input-lg">
+                            <option disabled selected>Sélectionner un genre</option>
+                            <option value="male">Homme</option>
+                            <option value="female">Femme</option>
+                            <option value="others">Non Spécifié</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6">
+                    <div class="input-group">
+                        <label>Pays</label>
+                        <select required [(ngModel)]="user.country" required name="country"
+                            class="form-control input-lg">
+                            <option disabled selected>Sélectionner un pays</option>
+                            <option *ngFor="let c of countries" value="{{c}}">{{c}}</option>
+
+                        </select>
+                    </div>
+                </div>
+                <div class="row no-padd" style="border: none;">
+                    <div class="detail pannel-footer">
+                        <div class="col-md-12 col-sm-12">
+                            <div class="detail-pannel-footer-btn pull-right">
+                                <a (click)="submit()" style="cursor: pointer;" class="footer-btn choose-cover">Mettre à
+                                    Jour</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+
+
+
+    </div>
+</div>
+<!-- General Detail End -->

@@ -33,6 +33,9 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './auth/auth-interceptor';
 import { ErrorInterceptor } from './error-interceptor';
+import { ToastrModule } from 'ngx-toastr';
+import { DashboardComponent } from './componants/admin/dashboard/dashboard.component';
+import { UsersComponent } from './componants/admin/users/users.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +63,8 @@ import { ErrorInterceptor } from './error-interceptor';
     ApplicationsComponent,
     EditUserComponent,
     ChangePasswordsComponent,
+    DashboardComponent,
+    UsersComponent,
   ],
   imports: [
     BrowserModule,
@@ -70,6 +75,7 @@ import { ErrorInterceptor } from './error-interceptor';
     MatPaginatorModule,
     MatChipsModule,
     MatProgressSpinnerModule,
+    ToastrModule.forRoot(), // ToastrModule added
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

@@ -1,30 +1,33 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/User';
 import { AuthService } from 'src/app/services/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-account',
   templateUrl: './account.component.html',
   styleUrls: ['./account.component.css'],
 })
-export class AccountComponent {
+export class AccountComponent implements OnInit {
   user: User;
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private toastr: ToastrService
+  ) {}
 
   ngOnInit() {
-    if (!this.authService.getIsAuth) {
-      this.router.navigate(['/connexion']);
-    }
-
     this.authService.getUser().subscribe((res) => {
       this.user = res;
-      console.log(this.user);
     });
   }
 
   logout() {
     this.authService.logout();
-    this.router.navigate(['/connexion']);
+    this.router.navigate(['/']).then(() => {
+      window.location.reload();
+    });
+    this.toastr.success('', 'à bientôt');
   }
 }

@@ -28,6 +28,7 @@
     "mongoose": "^7.6.3",
     "mongoose-unique-validator": "^4.0.0",
     "multer": "*",
+    "ngx-toastr": "^15.2.2",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.12.0"

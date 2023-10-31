@@ -12,11 +12,18 @@
                         aria-hidden="true"></i>Offres</a></li>
             <li><a routerLink="services"><i style="color: white;" class="fa fa-fire" aria-hidden="true"></i>Nos
                     Service</a></li>
+
+
+
             <li class="left-br"><a routerLink="/{{connected? 'moncompte':'connexion'}}" data-toggle="modal"
                     data-target="#signup" class="signin"><i style="color: white;" class="fa fa-user"></i>
 
                     {{connected? "Mon Compte":"Se Connecter"}}
                 </a></li>
+
+
+            <li><a routerLink="admin" *ngIf="admin">Admin</a>
+            </li>
         </ul>
 
 

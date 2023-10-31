@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 import { environment } from '../environments/environment';
 import { User } from '../models/User';
@@ -41,7 +41,9 @@ export class AuthService {
   createUser(user: User) {
     this.http.post(BACKEND_URL + 'sign-up', user).subscribe(
       () => {
-        this.router.navigate(['/']);
+        this.router.navigate(['/']).then(() => {
+          window.location.reload();
+        });
       },
       (error) => {
         alert(
@@ -75,7 +77,9 @@ export class AuthService {
             );
             console.log(expirationDate);
             this.saveAuthData(token, expirationDate, this.userId);
-            this.router.navigate(['/']);
+            this.router.navigate(['/']).then(() => {
+              window.location.reload();
+            });
           }
         },
         (error) => {
@@ -144,5 +148,26 @@ export class AuthService {
       expirationDate: new Date(expirationDate),
       userId: userId,
     };
+  }
+
+  updateUser(user: User) {
+    return this.http.put<User>(BACKEND_URL + 'update', user);
+  }
+
+  updatePassword(oldPassword: string, newPassword: string) {
+    return this.http.put<User>(BACKEND_URL + 'update-password/' + this.userId, {
+      oldPassword: oldPassword,
+      newPassword: newPassword,
+    });
+  }
+
+  getAllUsers(
+    usersPerPage: number,
+    currentPage: number
+  ): Observable<{ message: string; users: User[]; maxUsers: number }> {
+    const queryParams = `?pagesize=${usersPerPage}&page=${currentPage}`;
+    return this.http.get<{ message: string; users: User[]; maxUsers: number }>(
+      BACKEND_URL + 'all' + queryParams
+    );
   }
 }

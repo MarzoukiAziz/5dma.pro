@@ -14,13 +14,12 @@
     <!-- Title Header End -->
 
     <!-- Candidate Profile Start -->
-    <section class="detail-desc advance-detail-pr gray-bg">
+    <section class="detail-desc advance-detail-pr gray-bg" *ngIf="user">
         <div class="container white-shadow">
             <div class="row">
                 <div class="detail-pic"><img
                         src="assets/img/{{user.gender=='male'?'homme':user.gender=='female'?'femme':'autre'}}.png"
-                        class="img" alt="" /><a href="#" class="detail-edit" title="edit"><i
-                            class="fa fa-pencil"></i></a></div>
+                        class="img" alt="" /></div>
                 <div (click)="logout()" class="detail-status"><span style="    background: lightblue!important;
                     color: black!important;
                     font-weight: 700;
@@ -30,22 +29,40 @@
             <div class="row bottom-mrg">
                 <div class="col-md-12 col-sm-12">
                     <div class="advance-detail detail-desc-caption">
-                        <h4>{{user.lname}} {{user.fname}}</h4><span class="designation">{{user.email}}</span>
+                        <h4>{{user.lname}} {{user.fname}}</h4>
 
+                        <span class="designation"> <i class="fa fa-envelope"></i>&nbsp; {{user.email}}</span><span
+                            class="designation">&nbsp;&nbsp;&nbsp;<i class="fa fa-phone"></i>&nbsp;
+                            {{user.phone}}</span>
+                        <div class="row bottom-mrg">
+                            <div class="col-md-12 col-sm-12">
+                                <div class="advance-detail detail-desc-caption">
+                                    <ul>
+                                        <li><strong class="j-applied">27</strong>Candidatures envoyées</li>
+                                        <li><strong class="j-shared">4</strong>Entretiens à venir</li>
+                                        <li><strong class="j-view">5</strong>Candidatures refusées</li>
+
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
                 </div>
             </div>
 
             <div class="row no-padd">
                 <div class="detail pannel-footer">
-                    <div class="col-md-5 col-sm-5">
+                    <div class="col-md-2 col-sm-2">
                         <p>Membre depuis {{user.date |date: 'dd/MM/yyyy'}}</p>
                     </div>
-                    <div class="col-md-7 col-sm-7">
-                        <div class="detail-pannel-footer-btn pull-right"><a href="javascript:void(0)"
-                                data-toggle="modal" data-target="#apply-job" class="footer-btn grn-btn"
-                                title="">Modifier Mes Informations</a><a href="#" class="footer-btn blu-btn"
-                                title="">Modifier Mon Mot De Passe</a></div>
+                    <div class="col-md-10 col-sm-10">
+                        <div class="detail-pannel-footer-btn pull-right">
+                            <a routerLink="/mes-services" class="footer-btn grn-btn">Mes Services</a>
+                            <a routerLink="/modifier-info" class="footer-btn blu-btn">Modifier Mes Informations</a>
+                            <a routerLink="/modifier-mdp" class="footer-btn" style="background-color: gray;">Modifier
+                                Mon Mot De Passe</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -58,41 +75,13 @@
             <div class="col-md-12 col-sm-12">
                 <div class="full-card">
                     <div class="deatil-tab-employ tool-tab">
-                        <ul class="nav simple nav-tabs" id="simple-design-tab">
-                            <li class="active"><a href="#candidature">Mes Candidatures</a></li>
-                            <li><a href="#services">Mes Services</a></li>
-
-                        </ul>
-                        <!-- Start All Sec -->
-                        <div class="tab-content">
-                            <!-- Start About Sec -->
-                            <div id="candidature" class="tab-pane fade in active">
-                                <div class="row bottom-mrg">
-                                    <div class="col-md-12 col-sm-12">
-                                        <div class="advance-detail detail-desc-caption">
-                                            <ul>
-                                                <li><strong class="j-applied">27</strong>Candidatures envoyées</li>
-                                                <li><strong class="j-shared">4</strong>Entretiens à venir</li>
-                                                <li><strong class="j-view">5</strong>Candidatures refusées</li>
-
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <!-- End About Sec -->
-
-                            <!-- Start Address Sec -->
-                            <div id="services" class="tab-pane fade">
-                                <h1>Bientôt</h1>
-                            </div>
-                            <!-- End Address Sec -->
 
 
-                        </div>
-                        <!-- Start All Sec -->
+
+
+
                     </div>
+                    <!-- Start All Sec -->
                 </div>
             </div>
         </div>

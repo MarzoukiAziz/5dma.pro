@@ -1,0 +1,45 @@
+<title>Utilisateurs</title>
+<section class="inner-header-title" style="background-image:url(assets/img/banner-5.jpg);">
+    <div class="container">
+        <h1>Utilisateurs</h1>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+
+        <div class="row">
+            <div class="container mt-5">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Gender</th>
+                            <th>Country</th>
+                            <th>Date</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let user of users">
+                            <td>{{ user.email }} <span *ngIf="user.role=='admin'"
+                                    class="badge badge-success">Admin</span></td>
+                            <td>{{ user.phone }}</td>
+                            <td>{{ user.fname }}</td>
+                            <td>{{ user.lname }}</td>
+                            <td>{{ user.gender }}</td>
+                            <td>{{ user.country }}</td>
+                            <td>{{ user.date| date:'YYYY-MM-dd hh:mm' }}</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+        </div>
+    </div>
+</section>
