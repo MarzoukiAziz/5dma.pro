@@ -14,6 +14,7 @@ import { CompanyClientComponent } from './componants/companies/company-client/co
 import { HomeComponent } from './componants/home/home.component';
 import { JobDetailComponent } from './componants/jobs/job-detail/job-detail.component';
 import { JobsComponent } from './componants/jobs/jobs/jobs.component';
+import { ServicesComponent } from './componants/services/services.component';
 
 const routes: Routes = [
   {
@@ -66,6 +67,10 @@ const routes: Routes = [
         component: JobsComponent,
       },
       {
+        path: 'services',
+        component: ServicesComponent,
+      },
+      {
         path: 'offre/:id',
         component: JobDetailComponent,
       },
@@ -78,4 +83,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

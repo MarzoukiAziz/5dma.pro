@@ -1,0 +1,116 @@
+.pricing .box {
+    padding: 20px;
+    background: #fff;
+    text-align: center;
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #2D6C71;
+    box-shadow: 0 15px 15px rgba(0, 0, 0, 0.4);
+}
+
+.pricing .box h3 {
+    font-weight: 400;
+    padding: 15px;
+    margin-top: 15px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #151515;
+}
+
+.pricing .box h4 {
+    font-size: 42px;
+    color: #151515;
+    font-weight: 700;
+    font-family: "Open Sans", sans-serif;
+    margin-bottom: 20px;
+}
+
+.pricing .box h4 sup {
+    font-size: 20px;
+    top: -15px;
+    left: -3px;
+}
+
+.pricing .box h4 span {
+    color: #bababa;
+    font-size: 16px;
+    font-weight: 300;
+}
+
+.pricing .box ul {
+    padding: 0;
+    list-style: none;
+    color: #151515;
+    text-align: center;
+    line-height: 20px;
+    font-size: 14px;
+}
+
+.pricing .box ul li {
+    padding-bottom: 16px;
+}
+
+.pricing .box ul i {
+    color: #2D6C71;
+    font-size: 18px;
+    padding-right: 4px;
+}
+
+.pricing .box ul .na {
+    color: #ccc;
+    text-decoration: line-through;
+}
+
+.pricing .box .btn-wrap {
+    padding: 15px;
+    text-align: center;
+}
+
+.pricing .box .btn-buy {
+    display: inline-block;
+    padding: 10px 40px 12px 40px;
+    border-radius: 5px;
+    border: 2px solid #2D6C71;
+    color: #2D6C71;
+    font-size: 14px;
+    font-weight: 400;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.pricing .box .btn-buy:hover {
+    background: #2D6C71;
+    color: #fff;
+}
+
+.pricing .recommended {
+    border-color: #2D6C71;
+    background-color: #2D6C71;
+}
+
+.pricing .recommended .btn-buy {
+    background: white;
+    color: #2D6C71;
+}
+
+.pricing .recommended .btn-buy:hover {
+    background: white;
+    color: #2D6C71;
+}
+
+.pricing .recommended-badge {
+    position: absolute;
+    top: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+    font-size: 12px;
+    padding: 4px 25px 6px 25px;
+    background: #eaf6e9;
+    color: #2D6C71;
+    border-radius: 50px;
+    text-transform: uppercase;
+    font-weight: 600;
+}
