@@ -12,8 +12,8 @@ import { PageEvent } from '@angular/material/paginator';
   styleUrls: ['./jobs.component.css'],
 })
 export class JobsComponent implements OnInit, OnDestroy {
-  jobs: Job[];
-  jobsCount: number;
+  jobs: Job[] = [];
+  jobsCount: number = 0;
 
   jobsPerPage = 12;
   pageSizeOptions = [6, 12, 24, 32];
@@ -80,5 +80,45 @@ export class JobsComponent implements OnInit, OnDestroy {
         this.jobs = transformedCompaniesData.jobs;
         this.jobsCount = transformedCompaniesData.jobsCount;
       });
+  }
+
+  transform(value: Date): string {
+    const currentDateTime = new Date();
+    value = new Date(value);
+
+    const diffInSeconds = Math.floor(
+      (currentDateTime.getTime() - value.getTime()) / 1000
+    );
+
+    const years = Math.floor(diffInSeconds / 31536000);
+    const months = Math.floor((diffInSeconds % 31536000) / 2628000);
+    const days = Math.floor(((diffInSeconds % 31536000) % 2628000) / 86400);
+    const hours = Math.floor(
+      (((diffInSeconds % 31536000) % 2628000) % 86400) / 3600
+    );
+    const minutes = Math.floor(
+      ((((diffInSeconds % 31536000) % 2628000) % 86400) % 3600) / 60
+    );
+    const seconds =
+      ((((diffInSeconds % 31536000) % 2628000) % 86400) % 3600) % 60;
+
+    let result = '';
+
+    if (months > 0) {
+      result += `il y a ${months} mois`;
+    } else if (days == 1) {
+      result += `hier `;
+    } else if (days > 1) {
+      result += `il y a ${days} jours `;
+    } else if (days == 0 && hours >= 1) {
+      result += `il y a ${hours} heures `;
+    } else if (minutes > 0 && hours == 0) {
+      result += `il y a ${minutes} minutes `;
+    }
+
+    if (result === '') {
+      result = 'maintenant';
+    }
+    return result;
   }
 }

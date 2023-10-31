@@ -52,14 +52,15 @@
         <div class="row extra-mrg">
 
             <div *ngFor="let j of jobs" class="col-md-4 col-sm-6">
-                <div class="grid-view brows-job-list" routerLink="/offre/{{j._id}}">
-                    <div style="height: 280px;">
+                <div class="grid-view brows-job-list" routerLink="/offre/{{j._id}}"
+                    style="border: 1px solid #00000030;">
+                    <div style="height: 250px;">
                         <div class="brows-job-company-img">
                             <img src="{{j.company.icon}}" class="img-responsive" alt="" />
                         </div>
                         <div class="brows-job-position">
                             <h3>{{j.title}}</h3>
-                            <p><span>{{j.company.name}}</span></p>
+                            <p><strong>{{j.company.name}}</strong></p>
                         </div>
                         <div class="job-position">
                             <span class="job-num">{{j.function}}</span>
@@ -68,14 +69,24 @@
                             <span class="full-time">{{j.contract}}</span>
                         </div>
 
+
                     </div>
 
+
+
                     <ul class="grid-view-caption">
+
+
                         <div class="brows-job-location" style="margin: auto !important; padding: 15px 0px;
                         width: fit-content;">
                             <p><i class="fa fa-map-marker"></i>&nbsp;&nbsp;{{j.location}}</p>
                         </div>
 
+                    </ul>
+                    <ul>
+                        <div style="margin: auto !important;">
+                            <p>{{transform(j.date)}}</p>
+                        </div>
                     </ul>
                     <!-- <span class="tg-themetag tg-featuretag">Premium</span> -->
                 </div>

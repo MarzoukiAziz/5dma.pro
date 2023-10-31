@@ -22,7 +22,8 @@
                 <ul>
                     <li><span class="detail-info">Contrat</span>{{job.contract}}</li>
                     <li><span class="detail-info">Télétravail </span>{{job.remote}}</li>
-                    <li><span class="detail-info">Publiée le</span>{{job.date |date: 'dd/MM/yyyy'}}</li>
+                    <li><span class="detail-info">Publiée le</span>{{job.date |date: 'dd/MM/yyyy'}}
+                        ({{transform(job.date)}})</li>
                 </ul>
                 <ul class="social-info">
                     <li *ngIf="job.company.twitter"><a href="{{job.company.twitter}}"><i class="fa fa-twitter"></i></a>
@@ -52,9 +53,7 @@
                         <li><span>Fonction</span>{{job.function}}</li>
 
                     </ul>
-                    <br><br>
-                    <h5>Description De L'entreprise
-                    </h5>
+
 
                 </div>
 
