@@ -41,11 +41,13 @@ export class JobService {
     jobsPerPage: number,
     currentPage: number,
     keywords: string,
-    location: string
+    location: string,
+    expired: Boolean,
+    range: string
   ): Observable<{ message: string; jobs: Job[]; maxJobs: number }> {
-    const queryParams = `?pagesize=${jobsPerPage}&page=${currentPage}`;
+    const queryParams = `?pagesize=${jobsPerPage}&page=${currentPage}&keywords=${keywords}&location=${location}&expired=${expired}&range=${range}`;
     return this.http.get<{ message: string; jobs: Job[]; maxJobs: number }>(
-      BACKEND_URL + queryParams
+      BACKEND_URL + 'filtrer' + queryParams
     );
   }
 
@@ -55,7 +57,7 @@ export class JobService {
   ): Observable<{ message: string; jobs: Job[]; maxJobs: number }> {
     const queryParams = `?pagesize=${jobsPerPage}&page=${currentPage}`;
     return this.http.get<{ message: string; jobs: Job[]; maxJobs: number }>(
-      BACKEND_URL + '/all' + queryParams
+      BACKEND_URL + 'all' + queryParams
     );
   }
 

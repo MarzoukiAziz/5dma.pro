@@ -17,17 +17,23 @@
 
         <div class="row extra-mrg">
             <div class="wrap-search-filter">
-                <div class="col-md-7 col-sm-7">
-                    <input type="text" class="form-control" placeholder="Keyword: Name, Tag">
-                </div>
+                <form (ngSubmit)="onSubmit()">
+
+                    <div class="col-md-5 col-sm-5">
+                        <input type="text" class="form-control" placeholder="Mots clés" [(ngModel)]="keywords"
+                            name="keywords">
+                    </div>
 
 
-                <div class="col-md-2 col-sm-2">
-                    <button type="submit" class="btn btn-warning full-width">Filter</button>
-                </div>
-                <div class="col-md-3 col-sm-3">
-                    <button routerLink="/admin/company/add" class="btn btn-success full-width">Ajouter</button>
-                </div>
+                    <div class=" col-md-4 col-sm-4">
+                        <button type="submit" class="btn btn-success full-width">Filtrer</button>
+                    </div>
+
+                    <div class="col-md-3 col-sm-3">
+                        <button routerLink="/admin/company/add" class="btn btn-warning full-width">Ajouter</button>
+                    </div>
+                </form>
+
 
             </div>
         </div>

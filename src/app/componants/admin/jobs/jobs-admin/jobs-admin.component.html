@@ -15,53 +15,68 @@
         <!-- Company Searrch Filter Start -->
         <div class="row extra-mrg">
             <div class="wrap-search-filter">
-                <form>
-                    <div class="col-md-6 col-sm-6">
-                        <input type="text" class="form-control" placeholder="Mots clés">
+                <form (ngSubmit)="onSubmit()">
+
+                    <div class="col-md-5 col-sm-5">
+                        <input type="text" class="form-control" placeholder="Mots clés" [(ngModel)]="keywords"
+                            name="keywords">
+                    </div>
+                    <div class="col-md-3 col-sm-3">
+                        <input type="text" class="form-control" placeholder="Localisation" [(ngModel)]="location"
+                            name="location">
                     </div>
 
-                    <div class="col-md-3 col-sm-3">
-                        <button type="submit" class="btn btn-warning full-width">Filtrer</button>
+                    <div class=" col-md-4 col-sm-4">
+                        <button type="submit" class="btn btn-success full-width">Filtrer</button>
                     </div>
 
-                    <div class="col-md-3 col-sm-3">
-                        <button routerLink="/admin/job/add" class="btn btn-success full-width">Ajouter</button>
-                    </div>
+
                 </form>
             </div>
         </div>
         <!-- Company Searrch Filter End -->
+        <br>
+
+        <mat-chip-listbox aria-label="Fish selection">
+            <mat-chip-option (click)="day()" color="accent">Dernières 24 heures</mat-chip-option>
+            <mat-chip-option (click)="week()" color="accent">La semaine dernière</mat-chip-option>
+            <mat-chip-option (click)="month()" color="accent">Le mois dernier</mat-chip-option>
+        </mat-chip-listbox>
+
+
+        <br><br>
+        <!-- Company Searrch Filter End -->
 
         <!--Browse Job In Grid-->
         <div class="row extra-mrg">
-
             <div *ngFor="let j of jobs" class="col-md-4 col-sm-6">
                 <div class="grid-view brows-job-list" routerLink="/admin/job/{{j._id}}">
-                    <div class="brows-job-company-img">
-                        <img src="{{j.company.icon}}" class="img-responsive" alt="" />
+                    <div style="height: 280px;">
+                        <div class="brows-job-company-img">
+                            <img src="{{j.company.icon}}" class="img-responsive" alt="" />
+                        </div>
+                        <div class="brows-job-position">
+                            <h3>{{j.title}}</h3>
+                            <p><span>{{j.company.name}}</span></p>
+                        </div>
+                        <div class="job-position">
+                            <span class="job-num">{{j.function}}</span>
+                        </div>
+                        <div class="brows-job-type">
+                            <span class="full-time">{{j.contract}}</span>
+                        </div>
                     </div>
-                    <div class="brows-job-position">
-                        <h3>{{j.title}}</h3>
-                        <p><span>{{j.company.name}}</span></p>
-                    </div>
-                    <div class="job-position">
-                        <span class="job-num">{{j.function}}</span>
-                    </div>
-                    <div class="brows-job-type">
-                        <span class="full-time">{{j.contract}}</span>
-                    </div>
+
                     <ul class="grid-view-caption">
-                        <li>
-                            <div class="brows-job-location">
-                                <p><i class="fa fa-map-marker"></i>{{j.location}}</p>
-                            </div>
-                        </li>
+                        <div class="brows-job-location" style="margin: auto !important; padding: 15px 0px;
+                        width: fit-content;">
+                            <p><i class="fa fa-map-marker"></i>&nbsp;&nbsp;{{j.location}}</p>
+                        </div>
 
                     </ul>
                     <span *ngIf="j.expired" class="tg-themetag tg-featuretag">Expired</span>
                 </div>
             </div>
-
 
         </div>
         <mat-paginator [length]="jobsCount" [pageSize]="jobsPerPage" *ngIf="jobs.length > 0"

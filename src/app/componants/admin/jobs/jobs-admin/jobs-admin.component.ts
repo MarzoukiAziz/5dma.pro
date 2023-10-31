@@ -15,36 +15,58 @@ export class JobsAdminComponent implements OnInit, OnDestroy {
   jobs: Job[];
   jobsCount: number;
 
-  jobsPerPage = 10;
+  jobsPerPage = 12;
   pageSizeOptions = [6, 12, 24, 32];
   currentPage = 1;
   private postsSub: Subscription;
+  location = '';
+  keywords = '';
+  range = '';
+
   constructor(private _service: JobService) {}
 
-  ngOnInit(): void {
-    this.postsSub = this._service
-      .getAllJobs(this.jobsPerPage, this.currentPage)
-      .pipe(
-        map((jobsData) => {
-          return {
-            jobs: jobsData.jobs,
-            jobsCount: jobsData.maxJobs,
-          };
-        })
-      )
-      .subscribe((transformedCompaniesData) => {
-        this.jobs = transformedCompaniesData.jobs;
-        this.jobsCount = transformedCompaniesData.jobsCount;
-
-        console.log(this.jobs);
-      });
+  ngOnInit() {
+    this.getData();
   }
 
   onChangedPage(event: PageEvent) {
     this.currentPage = event.pageIndex + 1;
     this.jobsPerPage = event.pageSize;
+    this.getData();
+  }
+
+  ngOnDestroy() {
+    this.postsSub.unsubscribe();
+  }
+
+  onSubmit() {
+    this.currentPage = 1;
+    this.getData();
+  }
+
+  day() {
+    this.range = '1';
+    this.getData();
+  }
+  week() {
+    this.range = '7';
+    this.getData();
+  }
+  month() {
+    this.range = '30';
+    this.getData();
+  }
+
+  getData() {
     this.postsSub = this._service
-      .getAllJobs(this.jobsPerPage, this.currentPage)
+      .filtrerJobs(
+        this.jobsPerPage,
+        this.currentPage,
+        this.keywords,
+        this.location,
+        true,
+        this.range
+      )
       .pipe(
         map((jobsData) => {
           return {
@@ -57,9 +79,5 @@ export class JobsAdminComponent implements OnInit, OnDestroy {
         this.jobs = transformedCompaniesData.jobs;
         this.jobsCount = transformedCompaniesData.jobsCount;
       });
-  }
-
-  ngOnDestroy() {
-    this.postsSub.unsubscribe();
   }
 }

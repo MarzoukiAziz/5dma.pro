@@ -32,18 +32,19 @@ export class CompanyService {
 
   getCompanies(
     companiesPerPage: number,
-    currentPage: number
+    currentPage: number,
+    keywords: string
   ): Observable<{
     message: string;
     companies: Company[];
     maxCompanies: number;
   }> {
-    const queryParams = `?pagesize=${companiesPerPage}&page=${currentPage}`;
+    const queryParams = `?pagesize=${companiesPerPage}&page=${currentPage}&keywords=${keywords}`;
     return this.http.get<{
       message: string;
       companies: Company[];
       maxCompanies: number;
-    }>(BACKEND_URL + queryParams);
+    }>(BACKEND_URL + 'filtrer' + queryParams);
   }
 
   getCompany(id: string) {

@@ -23,6 +23,7 @@ import { JobsComponent } from './componants/jobs/jobs/jobs.component';
 import { JobDetailComponent } from './componants/jobs/job-detail/job-detail.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatChipsModule } from '@angular/material/chips';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     FormsModule,
     BrowserAnimationsModule,
     MatPaginatorModule,
+    MatChipsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

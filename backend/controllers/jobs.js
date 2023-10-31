@@ -64,52 +64,108 @@ exports.getJobs = (req, res, next) => {
         });
 };
 
-exports.filterJobs = (req, res, next) => {
+exports.filtrerJobs = (req, res, next) => {
     const pageSize = +req.query.pagesize;
     const currentPage = +req.query.page;
-    const keywords = +req.query.keywords;
-    const location = +req.query.keywords;
-    const jobQuery = Job.find();
-
+    const keywords = req.query.keywords;
+    const location = req.query.location;
+    const expired = req.query.expired;
+    const range = req.query.range;
     const keywordArray = keywords.split(' ').map(keyword => new RegExp(keyword, 'i'));
 
-    let fetchedJobs;
+
+    let jobQuery = Job.find();
+    if (!expired) {
+        jobQuery.where({ expired: false })
+    }
+
+    if (keywordArray.length) {
+        jobQuery.and([
+            {
+                $or: [
+                    { title: { $in: keywordArray } },
+                    { details: { $in: keywordArray } },
+                    { function: { $in: keywordArray } }
+                ]
+            }
+        ]);
+    }
+
+    if (location) {
+        jobQuery = jobQuery.where({ location: new RegExp(location, 'i') });
+    }
+
+
+
+
+    let jobQueryCount = Job.find();
+    if (!expired) {
+        jobQueryCount.where({ expired: false })
+    }
+
+    if (keywordArray.length) {
+        jobQueryCount.and([
+            {
+                $or: [
+                    { title: { $in: keywordArray } },
+                    { details: { $in: keywordArray } },
+                    { function: { $in: keywordArray } }
+                ]
+            }
+        ]);
+    }
+
+    if (location) {
+        jobQueryCount = jobQueryCount.where({ location: new RegExp(location, 'i') });
+    }
+    count = 0
+
+    jobQueryCount
+        .then(function (models) {
+            count = models.length
+        })
+
+
+
+    if (range === '1') {
+        const r = new Date(Date.now() - 1 * 24 * 60 * 60 * 1000);
+        jobQuery = jobQuery.where({ date: { $gte: r } });
+    }
+    if (range === '7') {
+        const r = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
+        jobQuery = jobQuery.where({ date: { $gte: r } });
+    }
+    if (range === '30') {
+        const r = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000);
+        jobQuery = jobQuery.where({ date: { $gte: r } });
+    }
+
+
+
+
     if (pageSize && currentPage) {
         jobQuery.skip(pageSize * (currentPage - 1)).limit(pageSize);
     }
+
+
     jobQuery
         .populate('company')
-        .find({ expired: false })
-    find({
-        $and: [
-            {
-                $or: [
-                    { title: keywordArray },
-                    { details: keywordArray },
-                    { function: keywordArray }
-                ]
-            },
-            { location: location }
-        ]
-    })
         .sort({ date: 'desc' })
         .then(documents => {
-            fetchedJobs = documents;
-            return Job.count();
-        })
-        .then(count => {
             res.status(200).json({
                 message: "Jobs fetched successfully!",
-                jobs: fetchedJobs,
+                jobs: documents,
                 maxJobs: count
             });
         })
         .catch(error => {
             res.status(500).json({
-                message: "Fetching Jobs failed!"
+                message: "Fetching Jobs failed! " + error
             });
         });
 };
+
+
 
 exports.getAllJobs = (req, res, next) => {
     const pageSize = +req.query.pagesize;
@@ -139,9 +195,6 @@ exports.getAllJobs = (req, res, next) => {
             });
         });
 };
-
-
-
 
 exports.getJob = (req, res, next) => {
     Job.findById(req.params.id)

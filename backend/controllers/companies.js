@@ -135,3 +135,78 @@ exports.updateCompany = (req, res, next) => {
         });
 };
 
+
+
+
+exports.filtrerCompanies = (req, res, next) => {
+
+
+
+    const pageSize = +req.query.pagesize;
+    const currentPage = +req.query.page;
+    const companyQuery = Company.find();
+
+    const keywords = req.query.keywords;
+    const keywordArray = keywords.split(' ').map(keyword => new RegExp(keyword, 'i'));
+
+    console.log(keywords)
+    if (keywords) {
+        companyQuery.and([
+            {
+                $or: [
+                    { name: { $in: keywordArray } },
+                    { description: { $in: keywordArray } },
+                    { secteur: { $in: keywordArray } },
+                    { location: { $in: keywordArray } }
+                ]
+            }
+        ]);
+    }
+
+    let companyQueryCount = Company.find();
+
+
+    if (keywords) {
+        companyQueryCount.and([
+            {
+                $or: [
+                    { name: { $in: keywordArray } },
+                    { description: { $in: keywordArray } },
+                    { secteur: { $in: keywordArray } },
+                    { location: { $in: keywordArray } }
+
+                ]
+            }
+        ]);
+    }
+
+
+    count = 0
+
+    companyQueryCount
+        .then(function (models) {
+            count = models.length
+        })
+
+
+    if (pageSize && currentPage) {
+        companyQuery.skip(pageSize * (currentPage - 1)).limit(pageSize);
+    }
+
+    companyQuery
+        .then(documents => {
+            res.status(200).json({
+                message: "Companies fetched successfully!",
+                companies: documents,
+                maxCompanies: count
+            });
+            console.log(count)
+        })
+        .catch(error => {
+            res.status(500).json({
+                message: "Fetching Companies failed!"
+            });
+        });
+
+
+};

@@ -17,15 +17,18 @@
         <!-- Company Searrch Filter Start -->
         <div class="row extra-mrg">
             <div class="wrap-search-filter">
-                <form>
+                <form (ngSubmit)="onSubmit()">
+
                     <div class="col-md-5 col-sm-5">
-                        <input type="text" class="form-control" placeholder="Mots clés">
+                        <input type="text" class="form-control" placeholder="Mots clés" [(ngModel)]="keywords"
+                            name="keywords">
                     </div>
                     <div class="col-md-3 col-sm-3">
-                        <input type="text" class="form-control" placeholder="Localisation">
+                        <input type="text" class="form-control" placeholder="Localisation" [(ngModel)]="location"
+                            name="location">
                     </div>
 
-                    <div class="col-md-4 col-sm-4">
+                    <div class=" col-md-4 col-sm-4">
                         <button type="submit" class="btn btn-success full-width">Filtrer</button>
                     </div>
 
@@ -34,24 +37,36 @@
             </div>
         </div>
         <!-- Company Searrch Filter End -->
+        <br>
+
+        <mat-chip-listbox aria-label="Fish selection">
+            <mat-chip-option (click)="day()" color="accent">Dernières 24 heures</mat-chip-option>
+            <mat-chip-option (click)="week()" color="accent">La semaine dernière</mat-chip-option>
+            <mat-chip-option (click)="month()" color="accent">Le mois dernier</mat-chip-option>
+        </mat-chip-listbox>
+
+
+        <br><br>
 
         <!--Browse Job In Grid-->
         <div class="row extra-mrg">
 
             <div *ngFor="let j of jobs" class="col-md-4 col-sm-6">
                 <div class="grid-view brows-job-list" routerLink="/offre/{{j._id}}">
-                    <div class="brows-job-company-img">
-                        <img src="{{j.company.icon}}" class="img-responsive" alt="" />
-                    </div>
-                    <div class="brows-job-position">
-                        <h3>{{j.title}}</h3>
-                        <p><span>{{j.company.name}}</span></p>
-                    </div>
-                    <div class="job-position">
-                        <span class="job-num">{{j.function}}</span>
-                    </div>
-                    <div class="brows-job-type">
-                        <span class="full-time">{{j.contract}}</span>
+                    <div style="height: 280px;">
+                        <div class="brows-job-company-img">
+                            <img src="{{j.company.icon}}" class="img-responsive" alt="" />
+                        </div>
+                        <div class="brows-job-position">
+                            <h3>{{j.title}}</h3>
+                            <p><span>{{j.company.name}}</span></p>
+                        </div>
+                        <div class="job-position">
+                            <span class="job-num">{{j.function}}</span>
+                        </div>
+                        <div class="brows-job-type">
+                            <span class="full-time">{{j.contract}}</span>
+                        </div>
                     </div>
 
                     <ul class="grid-view-caption">

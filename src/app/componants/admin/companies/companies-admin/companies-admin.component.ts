@@ -17,31 +17,31 @@ export class CompaniesAdminComponent implements OnInit, OnDestroy {
   pageSizeOptions = [6, 12, 24, 32];
   currentPage = 1;
   private postsSub: Subscription;
+  keywords = '';
 
   constructor(private _service: CompanyService) {}
 
   ngOnInit() {
-    this._service
-      .getCompanies(this.companiesPerPage, this.currentPage)
-      .pipe(
-        map((companiesData) => {
-          return {
-            companies: companiesData.companies,
-            maxCompanies: companiesData.maxCompanies,
-          };
-        })
-      )
-      .subscribe((transformedCompaniesData) => {
-        this.companies = transformedCompaniesData.companies;
-        this.companiesCount = transformedCompaniesData.maxCompanies;
-      });
+    this.getData();
   }
 
   onChangedPage(event: PageEvent) {
     this.currentPage = event.pageIndex + 1;
     this.companiesPerPage = event.pageSize;
+    this.getData();
+  }
+  onSubmit() {
+    this.currentPage = 1;
+    this.getData();
+  }
+
+  ngOnDestroy() {
+    this.postsSub.unsubscribe();
+  }
+
+  getData() {
     this.postsSub = this._service
-      .getCompanies(this.companiesPerPage, this.currentPage)
+      .getCompanies(this.companiesPerPage, this.currentPage, this.keywords)
       .pipe(
         map((companiesData) => {
           return {
@@ -54,9 +54,5 @@ export class CompaniesAdminComponent implements OnInit, OnDestroy {
         this.companies = transformedCompaniesData.companies;
         this.companiesCount = transformedCompaniesData.maxCompanies;
       });
-  }
-
-  ngOnDestroy() {
-    this.postsSub.unsubscribe();
   }
 }

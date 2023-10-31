@@ -13,6 +13,8 @@ router.put("/:id", extractFile, CompanyPostController.updateCompany);
 
 router.get("/all", extractFile, CompanyPostController.getAllCompanies);
 
+router.get("/filtrer", extractFile, CompanyPostController.filtrerCompanies);
+
 router.get("", CompanyPostController.getCompanies);
 
 router.get("/:id", CompanyPostController.getCompany);
