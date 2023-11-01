@@ -1,6 +1,5 @@
-<title>{{job.title}}</title>
-
-<section class="inner-header-page" style="background: #35434e;">
+<title *ngIf="job">{{job.title}}</title>
+<section class="inner-header-page" style="background: #35434e;" *ngIf="job">
     <div class="container">
 
         <div class="col-md-8">
@@ -38,7 +37,7 @@
     </div>
 </section>
 <br><br>
-<section>
+<section *ngIf="job">
     <div class="container">
 
         <div class="col-md-8 col-sm-8">
@@ -62,7 +61,8 @@
                 </div>
                 <br>
 
-                <a href="{{job.link}}" target="_blank" class="btn btn-success">Postuler sur le site de l'entreprise</a>
+                <a (click)="openDialog()" href="{{job.link}}" target="_blank" class="btn btn-success">Postuler sur le
+                    site de l'entreprise</a>
 
             </div>
 
@@ -89,7 +89,9 @@
                     </div>
 
                 </div>
-                <a href="{{job.link}}" target="_blank" class="btn btn-sidebar bt-1 bg-success">Postuler sur le site de
+                <a (click)="openDialog()" href="{{job.link}}" target="_blank"
+                    class="btn btn-sidebar bt-1 bg-success">Postuler sur le site
+                    de
                     l'entreprise</a>
             </div>
 

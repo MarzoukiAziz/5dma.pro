@@ -37,6 +37,8 @@ import { ToastrModule } from 'ngx-toastr';
 import { DashboardComponent } from './componants/admin/dashboard/dashboard.component';
 import { UsersComponent } from './componants/admin/users/users.component';
 import { NotfoundComponent } from './componants/common/notfound/notfound.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { DialogComponent } from './componants/jobs/dialog/dialog.component';
 
 @NgModule({
   declarations: [
@@ -67,6 +69,7 @@ import { NotfoundComponent } from './componants/common/notfound/notfound.compone
     DashboardComponent,
     UsersComponent,
     NotfoundComponent,
+    DialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -77,6 +80,7 @@ import { NotfoundComponent } from './componants/common/notfound/notfound.compone
     MatPaginatorModule,
     MatChipsModule,
     MatProgressSpinnerModule,
+    MatDialogModule,
     ToastrModule.forRoot(), // ToastrModule added
   ],
   providers: [

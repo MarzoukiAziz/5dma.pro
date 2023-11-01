@@ -8,19 +8,23 @@ import {
   SafeResourceUrl,
 } from '@angular/platform-browser';
 
+import { MatDialog } from '@angular/material/dialog';
+import { DialogComponent } from '../dialog/dialog.component';
+
 @Component({
   selector: 'app-job-detail',
   templateUrl: './job-detail.component.html',
   styleUrls: ['./job-detail.component.css'],
 })
 export class JobDetailComponent {
-  job: Job = new Job();
+  job?: Job;
   content!: SafeHtml;
 
   constructor(
     private _service: JobService,
     private route: ActivatedRoute,
     private router: Router,
+    private dialog: MatDialog,
     private sanitizer: DomSanitizer
   ) {}
 
@@ -28,6 +32,17 @@ export class JobDetailComponent {
     this._service.getJob(this.route.snapshot.params['id']).subscribe((res) => {
       this.job = res;
       this.content = this.sanitizer.bypassSecurityTrustHtml(this.job.details);
+    });
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(DialogComponent, {
+      width: '60rem',
+      data: this.job,
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log(`Dialog result: ${result}`);
     });
   }
 

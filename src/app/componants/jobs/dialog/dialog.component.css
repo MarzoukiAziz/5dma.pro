@@ -1,0 +1,40 @@
+.dialog{
+    background-color: white;
+    color: #000;
+}
+
+.imgDialog{
+    width: -webkit-fill-available;
+    padding: 10px 50px;
+}
+h2{
+    color: #000;
+    text-align: -webkit-center;
+}
+h4{
+    color: gray;
+    text-align: -webkit-center;
+}
+.btn{
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid black;
+}
+.btns{
+    display: flex;
+    justify-content: space-around;
+}
+
+.btn-success{
+    background-color: #5bff77!important;
+    color: black!important;
+    font-weight: 500;
+    font-size: 17px;
+}
+
+.btn-danger{
+    background-color: #ff2424!important;
+    color: whites;
+    font-weight: 500;
+    font-size: 17px;
+}

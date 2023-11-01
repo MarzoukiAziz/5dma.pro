@@ -1,0 +1,19 @@
+<div class="dialog">
+    <h1 mat-dialog-title>An Error Occurred!</h1>
+    <div mat-dialog-content>
+        <img class="imgDialog" src="assets/img/dialog.svg" alt=""><br><br>
+        <h2>
+            Avez-vous postulé pour le poste de {{data.title}} ?
+        </h2>
+        <h4>
+            Vous retrouverez tous les offres pour lesquels vous avez postulé dans « Mon Compte »/« Candidatures ».
+
+        </h4>
+    </div>
+    <div mat-dialog-actions class="btns">
+        <button mat-button mat-dialog-close class="btn btn-success" (click)="createApplication()">Oui, j'ai
+            postulé</button>
+        <button mat-button mat-dialog-close class="btn btn-danger">Non, je n'ai pas postulé</button>
+    </div>
+    <br><br>
+</div>

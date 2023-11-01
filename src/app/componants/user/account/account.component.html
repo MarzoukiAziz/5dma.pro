@@ -75,7 +75,69 @@
             <div class="col-md-12 col-sm-12">
                 <div class="full-card">
                     <div class="deatil-tab-employ tool-tab">
+                        <br><br>
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12">
+                                <div class="search-filter">
+                                    <div class="col-md-8 col-sm-7"></div>
+                                    <div class="col-md-4 col-sm-5">
+                                        <div class="filter-form">
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" placeholder="Search…">
+                                                <span class="input-group-btn">
+                                                    <button type="button" class="btn btn-default">Go</button>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
 
+                                </div>
+                            </div>
+                        </div>
+                        <div style="padding:20px">
+                            <article *ngFor="let a of apps">
+                                <div class="mng-company"
+                                    [style]="a.status=='sent'?'background-color:#1fb6ff20;':a.status=='interview'?'background-color:#23ce0020':'background-color:#ff2a6320;' ">
+
+                                    <div class="col-md-5 col-sm-5">
+                                        <div class="mng-company-name">
+                                            <h4 style="cursor: pointer;" routerLink="/offre/{{a.job._id}}">
+                                                {{a.job.title}}
+                                            </h4>
+                                            <span class="cmp-time">Envoyée {{transform(a.date)}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-3">
+                                        <div class="mng-company-location">
+                                            <p style="cursor: pointer;" routerLink="/entreprise/{{a.job.company._id}}">
+                                                <i class="fa fa-building"></i> {{a.job.company.name}}
+                                            </p>
+
+                                            <p><i class="fa fa-map-marker"></i> {{a.job.location}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-sm-4">
+                                        <div class="mng-company-action">
+                                            <select class="form-control input-lg" [(ngModel)]="a.status" name="type">
+                                                <option value="sent">
+                                                    Candidature
+                                                    envoyée
+                                                </option>
+                                                <option value="interview"> Entretien
+                                                    à
+                                                    venir</option>
+                                                <option value="rejected"> Candidature
+                                                    refusée</option>
+                                            </select>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <mat-paginator [length]="appsCount" [pageSize]="appsPerPage" *ngIf="apps.length > 0"
+                                [pageSizeOptions]="pageSizeOptions" (page)="onChangedPage($event)"></mat-paginator>
+                        </div>
 
 
 

@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { environment } from '../environments/environment';
 import { App } from '../models/App';
 import { AuthService } from './auth.service';
+import { Job } from '../models/Job';
 
 const BACKEND_URL = environment.apiUrl + '/apps/';
 @Injectable({
@@ -19,8 +20,18 @@ export class AppsService {
     private auth: AuthService
   ) {}
 
-  addApp(app: App) {
-    this.http.post<{ message: string; app: App }>(BACKEND_URL, app);
+  addApp(data: Job) {
+    const app = new App();
+    app.job = data;
+
+    this.auth.getUser().subscribe((res) => {
+      app.user = res;
+      this.http
+        .post<{ message: string; app: App }>(BACKEND_URL, app)
+        .subscribe((res) => {
+          alert(res.app._id);
+        });
+    });
   }
 
   updateApp(app: App) {

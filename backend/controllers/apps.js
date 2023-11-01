@@ -3,8 +3,14 @@ const User = require("../models/user")
 
 exports.createApp = (req, res, next) => {
 
-    const { date, status, comment, job, user } = req.body;
-    const app = new App({ date, status, comment, job, user });
+
+    const app = new App({
+        job: req.body.job,
+        user: req.body.user,
+    });
+    app.date = new Date();
+    app.status = 'sent';
+    app.comment = '';
     app
         .save()
         .then(createdApp => {
@@ -28,19 +34,18 @@ exports.filtrerApps = (req, res, next) => {
     const currentPage = +req.query.page;
     const uid = req.query.uid;
     const status = req.query.status;
+
     let appQuery = App.find();
     let appQueryCount = App.find();
 
     if (uid) {
-        const user = User.findById(uid)
-        appQuery = appQuery.where({ user: user });
-        appQueryCount = appQueryCount.where({ user: user });
+        appQuery = appQuery.where({ user: uid });
+        appQueryCount = appQueryCount.where({ user: uid });
     }
 
-    if (status) {
+    if (status != "all") {
         appQuery = appQuery.where({ status: status });
         appQueryCount = appQueryCount.where({ status: status });
-
     }
     count = 0
     appQueryCount
@@ -54,12 +59,17 @@ exports.filtrerApps = (req, res, next) => {
     }
 
     appQuery
-        .populate('job')
+        .populate({
+            path: 'job',
+            populate: {
+                path: 'company'
+            }
+        })
         .sort({ date: 'desc' })
         .then(documents => {
             res.status(200).json({
                 message: "Apps fetched successfully!",
-                Apps: documents,
+                apps: documents,
                 maxApps: count
             });
         })

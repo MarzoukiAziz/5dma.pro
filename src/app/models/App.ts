@@ -5,7 +5,7 @@ import { User } from './User';
 export class App {
   _id: string;
   date: Date;
-  statut: string;
+  status: string;
   comment: string;
   job: Job;
   user: User;
