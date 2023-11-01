@@ -15,6 +15,7 @@ export class AuthService {
   private tokenTimer: any;
   private userId: string;
   private authStatusListener = new Subject<boolean>();
+  private isAdmin = false;
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -28,6 +29,10 @@ export class AuthService {
 
   getIsAuth() {
     return this.isAuthenticated;
+  }
+
+  getIsAdmin() {
+    return this.isAdmin;
   }
 
   getUserId() {
@@ -104,6 +109,10 @@ export class AuthService {
       this.userId = authInformation.userId;
       this.setAuthTimer(expiresIn / 1000);
       this.authStatusListener.next(true);
+
+      this.getUser().subscribe((res) => {
+        this.isAdmin = res.role == 'admin';
+      });
     }
   }
 

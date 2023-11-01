@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AdminGuard } from './auth/admin.guard';
+import { AuthGuard } from './auth/auth.guard';
 import { AddComponent } from './componants/admin/companies/add/add.component';
 import { CompaniesAdminComponent } from './componants/admin/companies/companies-admin/companies-admin.component';
 import { CompanyAdminComponent } from './componants/admin/companies/company-admin/company-admin.component';
@@ -40,55 +42,68 @@ const routes: Routes = [
       {
         path: 'moncompte',
         component: AccountComponent,
+        canActivate: [AuthGuard],
       },
       {
         path: 'modifier-info',
         component: EditUserComponent,
+        canActivate: [AuthGuard],
       },
       {
         path: 'modifier-mdp',
         component: ChangePasswordsComponent,
+        canActivate: [AuthGuard],
       },
       {
         path: 'admin',
         component: DashboardComponent,
+        canActivate: [AdminGuard],
       },
       {
         path: 'admin/company/add',
         component: AddComponent,
+        canActivate: [AdminGuard],
       },
       {
         path: 'admin/companies',
         component: CompaniesAdminComponent,
+        canActivate: [AdminGuard],
       },
       {
         path: 'admin/company/:id',
         component: CompanyAdminComponent,
+        canActivate: [AdminGuard],
       },
       {
         path: 'admin/company/:id/edit',
         component: EditCompanyComponent,
+        canActivate: [AdminGuard],
       },
 
       {
         path: 'admin/job/add',
         component: AddJobComponent,
+        canActivate: [AdminGuard],
       },
       {
         path: 'admin/jobs',
         component: JobsAdminComponent,
+        canActivate: [AdminGuard],
       },
       {
         path: 'admin/job/:id',
         component: JobAdminComponent,
+        canActivate: [AdminGuard],
       },
       {
         path: 'admin/job/:id/edit',
         component: EditJobComponent,
+        canActivate: [AdminGuard],
       },
       {
         path: 'admin/users',
         component: UsersComponent,
+        canActivate: [AdminGuard],
       },
       {
         path: 'entreprises',
@@ -118,5 +133,6 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
+  providers: [AuthGuard, AdminGuard],
 })
 export class AppRoutingModule {}
