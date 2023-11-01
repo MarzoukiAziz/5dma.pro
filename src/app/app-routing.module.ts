@@ -12,6 +12,7 @@ import { EditJobComponent } from './componants/admin/jobs/edit-job/edit-job.comp
 import { JobAdminComponent } from './componants/admin/jobs/job-admin/job-admin.component';
 import { JobsAdminComponent } from './componants/admin/jobs/jobs-admin/jobs-admin.component';
 import { UsersComponent } from './componants/admin/users/users.component';
+import { NotfoundComponent } from './componants/common/notfound/notfound.component';
 import { TemplateComponent } from './componants/common/template/template.component';
 import { CompaniesClientComponent } from './componants/companies/companies-client/companies-client.component';
 import { CompanyClientComponent } from './componants/companies/company-client/company-client.component';
@@ -126,6 +127,7 @@ const routes: Routes = [
         component: JobDetailComponent,
       },
       { path: '', component: HomeComponent },
+      { path: '**', component: NotfoundComponent },
     ],
   },
 ];

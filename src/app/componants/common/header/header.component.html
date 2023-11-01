@@ -1,31 +1,37 @@
-<nav class="navbar navbar-default navbar-fixed navbar-transparent white bootsnav">
+<nav class="navbar navbar-default  white bootsnav">
     <div class="container">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu"><i
                 class="fa fa-bars"></i></button>
+
+
+
         <div class="navbar-header"><a class="navbar-brand" href="/"><img src="assets/img/logo-white.png"
-                    class="logo logo-display" alt=""><img src="assets/img/logo-white.png" class="logo logo-scrolled"
-                    alt=""></a></div>
-        <ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
-            <li><a routerLink="entreprises"><i style="color: whitesmoke;" class="fa fa-building"
-                        aria-hidden="true"></i>Entreprises</a></li>
-            <li><a routerLink="offres"><i style="color: white;" class="fa fa-briefcase"
-                        aria-hidden="true"></i>Offres</a></li>
-            <li><a routerLink="services"><i style="color: white;" class="fa fa-fire" aria-hidden="true"></i>Nos
-                    Service</a></li>
+                    class="logo logo-display" alt=""></a></div>
+
+
+        <div class="collapse navbar-collapse" id="navbar-menu">
+
+            <ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
+                <li><a routerLink="entreprises"><i style="color: whitesmoke;" class="fa fa-building"
+                            aria-hidden="true"></i>Entreprises</a></li>
+                <li><a routerLink="offres"><i style="color: white;" class="fa fa-briefcase"
+                            aria-hidden="true"></i>Offres</a></li>
+                <li><a routerLink="services"><i style="color: white;" class="fa fa-fire" aria-hidden="true"></i>Nos
+                        Service</a></li>
 
 
 
-            <li class="left-br"><a routerLink="/{{connected? 'moncompte':'connexion'}}" data-toggle="modal"
-                    data-target="#signup" class="signin"><i style="color: white;" class="fa fa-user"></i>
+                <li class="left-br"><a routerLink="/{{connected? 'moncompte':'connexion'}}" data-toggle="modal"
+                        data-target="#signup" class="signin"><i style="color: white;" class="fa fa-user"></i>
 
-                    {{connected? "Mon Compte":"Se Connecter"}}
-                </a></li>
-
-
-            <li><a routerLink="admin" *ngIf="admin">Admin</a>
-            </li>
-        </ul>
+                        {{connected? "Mon Compte":"Se Connecter"}}
+                    </a></li>
 
 
+                <li><a routerLink="admin" *ngIf="admin">Admin</a>
+                </li>
+            </ul>
+
+        </div>
     </div>
 </nav>

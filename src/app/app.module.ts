@@ -36,6 +36,7 @@ import { ErrorInterceptor } from './error-interceptor';
 import { ToastrModule } from 'ngx-toastr';
 import { DashboardComponent } from './componants/admin/dashboard/dashboard.component';
 import { UsersComponent } from './componants/admin/users/users.component';
+import { NotfoundComponent } from './componants/common/notfound/notfound.component';
 
 @NgModule({
   declarations: [
@@ -65,6 +66,7 @@ import { UsersComponent } from './componants/admin/users/users.component';
     ChangePasswordsComponent,
     DashboardComponent,
     UsersComponent,
+    NotfoundComponent,
   ],
   imports: [
     BrowserModule,
