@@ -2,10 +2,11 @@ const path = require("path");
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
-
 const companyRoutes = require("./routes/companies");
 const jobRoutes = require("./routes/jobs");
 const userRoutes = require("./routes/user");
+const appsRoutes = require("./routes/apps");
+
 
 
 const app = express();
@@ -46,6 +47,8 @@ app.use((req, res, next) => {
 app.use("/api/companies", companyRoutes);
 app.use("/api/jobs", jobRoutes);
 app.use("/api/users", userRoutes);
+app.use("/api/apps", appsRoutes);
+
 
 app.use((req, res, next) => {
     res.sendFile(path.join(__dirname, "angular", "index.html"));
