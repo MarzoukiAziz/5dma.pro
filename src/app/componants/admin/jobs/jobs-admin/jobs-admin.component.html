@@ -17,7 +17,7 @@
             <div class="wrap-search-filter">
                 <form (ngSubmit)="onSubmit()">
 
-                    <div class="col-md-5 col-sm-5">
+                    <div class="col-md-3 col-sm-3">
                         <input type="text" class="form-control" placeholder="Mots clés" [(ngModel)]="keywords"
                             name="keywords">
                     </div>
@@ -26,9 +26,14 @@
                             name="location">
                     </div>
 
-                    <div class=" col-md-4 col-sm-4">
-                        <button type="submit" class="btn btn-success full-width">Filtrer</button>
+                    <div class=" col-md-3 col-sm-3">
+                        <button type="submit" class="btn btn-warning full-width">Filtrer</button>
                     </div>
+                    <div class=" col-md-3 col-sm-3">
+                        <button type="submit" class="btn btn-success full-width"
+                            routerLink="/admin/job/add">Ajouter</button>
+                    </div>
+
 
 
                 </form>
