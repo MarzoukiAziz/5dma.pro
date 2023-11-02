@@ -135,6 +135,7 @@ export class AccountComponent implements OnInit {
 
   updateStatus(app: App) {
     this.appService.updateApp(app).subscribe((res) => {
+      this.getCount();
       this.toastr.success('', 'Modification Sauvgardé!');
     });
   }
