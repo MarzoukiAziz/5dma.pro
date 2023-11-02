@@ -21,6 +21,9 @@ export class AccountComponent implements OnInit {
   appsPerPage = 12;
   pageSizeOptions = [6, 12, 24, 32];
   currentPage = 1;
+  sent = 0;
+  interview = 0;
+  rejected = 0;
   private postsSub: Subscription;
 
   constructor(
@@ -34,6 +37,7 @@ export class AccountComponent implements OnInit {
     this.authService.getUser().subscribe((res) => {
       this.user = res;
       this.getData();
+      this.getCount();
     });
   }
 
@@ -51,9 +55,9 @@ export class AccountComponent implements OnInit {
     this.toastr.success('', 'à bientôt');
   }
 
-  getData() {
+  getData(status: string = 'all') {
     this.postsSub = this.appService
-      .getApps(this.appsPerPage, this.currentPage, 'all')
+      .getApps(this.appsPerPage, this.currentPage, status)
       .pipe(
         map((appsData) => {
           return {
@@ -66,6 +70,26 @@ export class AccountComponent implements OnInit {
       .subscribe((transformedCompaniesData) => {
         this.apps = transformedCompaniesData.apps;
         this.appsCount = transformedCompaniesData.appsCount;
+      });
+  }
+
+  getCount() {
+    this.appService
+      .getCount()
+      .pipe(
+        map((appsData) => {
+          return {
+            message: appsData.message,
+            sent: appsData.sent,
+            interview: appsData.interview,
+            rejected: appsData.rejected,
+          };
+        })
+      )
+      .subscribe((transformedCompaniesData) => {
+        this.sent = transformedCompaniesData.sent;
+        this.interview = transformedCompaniesData.interview;
+        this.rejected = transformedCompaniesData.rejected;
       });
   }
 
@@ -107,5 +131,11 @@ export class AccountComponent implements OnInit {
       result = 'maintenant';
     }
     return result;
+  }
+
+  updateStatus(app: App) {
+    this.appService.updateApp(app).subscribe((res) => {
+      this.toastr.success('', 'Modification Sauvgardé!');
+    });
   }
 }

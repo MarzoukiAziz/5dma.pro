@@ -20,6 +20,7 @@ import { HomeComponent } from './componants/home/home.component';
 import { JobDetailComponent } from './componants/jobs/job-detail/job-detail.component';
 import { JobSearchComponent } from './componants/jobs/job-search/job-search.component';
 import { JobsComponent } from './componants/jobs/jobs/jobs.component';
+import { PlansComponent } from './componants/services/plans/plans.component';
 import { AccountComponent } from './componants/user/account/account.component';
 import { ChangePasswordsComponent } from './componants/user/change-passwords/change-passwords.component';
 import { EditUserComponent } from './componants/user/edit-user/edit-user.component';
@@ -54,6 +55,10 @@ const routes: Routes = [
         path: 'modifier-mdp',
         component: ChangePasswordsComponent,
         canActivate: [AuthGuard],
+      },
+      {
+        path: 'services',
+        component: PlansComponent,
       },
       {
         path: 'admin',

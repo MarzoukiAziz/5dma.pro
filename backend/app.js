@@ -6,6 +6,8 @@ const companyRoutes = require("./routes/companies");
 const jobRoutes = require("./routes/jobs");
 const userRoutes = require("./routes/user");
 const appsRoutes = require("./routes/apps");
+const searchsRoutes = require("./routes/searchs");
+
 
 
 
@@ -48,6 +50,8 @@ app.use("/api/companies", companyRoutes);
 app.use("/api/jobs", jobRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/apps", appsRoutes);
+app.use("/api/searchs", searchsRoutes);
+
 
 
 app.use((req, res, next) => {

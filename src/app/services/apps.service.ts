@@ -28,14 +28,13 @@ export class AppsService {
       app.user = res;
       this.http
         .post<{ message: string; app: App }>(BACKEND_URL, app)
-        .subscribe((res) => {
-          alert(res.app._id);
-        });
+        .subscribe((res) => {});
     });
   }
 
-  updateApp(app: App) {
-    this.http.put<App>(BACKEND_URL + app._id, app);
+  updateApp(app: App): Observable<App> {
+    console.log(app);
+    return this.http.put<App>(BACKEND_URL + app._id, app);
   }
 
   getApps(
@@ -53,6 +52,22 @@ export class AppsService {
       apps: App[];
       maxApps: number;
     }>(BACKEND_URL + 'filtrer' + queryParams);
+  }
+
+  getCount(): Observable<{
+    message: string;
+    sent: number;
+    interview: number;
+    rejected: number;
+  }> {
+    const queryParams = `?uid=${this.auth.getUserId()}`;
+
+    return this.http.get<{
+      message: string;
+      sent: number;
+      interview: number;
+      rejected: number;
+    }>(BACKEND_URL + 'count' + queryParams);
   }
 
   getApp(id: string) {

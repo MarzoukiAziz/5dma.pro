@@ -39,6 +39,7 @@ import { UsersComponent } from './componants/admin/users/users.component';
 import { NotfoundComponent } from './componants/common/notfound/notfound.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { DialogComponent } from './componants/jobs/dialog/dialog.component';
+import { PlansComponent } from './componants/services/plans/plans.component';
 
 @NgModule({
   declarations: [
@@ -70,6 +71,7 @@ import { DialogComponent } from './componants/jobs/dialog/dialog.component';
     UsersComponent,
     NotfoundComponent,
     DialogComponent,
+    PlansComponent,
   ],
   imports: [
     BrowserModule,

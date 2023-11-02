@@ -38,9 +38,9 @@
                             <div class="col-md-12 col-sm-12">
                                 <div class="advance-detail detail-desc-caption">
                                     <ul>
-                                        <li><strong class="j-applied">27</strong>Candidatures envoyées</li>
-                                        <li><strong class="j-shared">4</strong>Entretiens à venir</li>
-                                        <li><strong class="j-view">5</strong>Candidatures refusées</li>
+                                        <li><strong class="j-applied">{{sent}}</strong>Candidatures envoyées</li>
+                                        <li><strong class="j-shared">{{interview}}</strong>Entretiens à venir</li>
+                                        <li><strong class="j-view">{{rejected}}</strong>Candidatures refusées</li>
 
                                     </ul>
                                 </div>
@@ -76,24 +76,18 @@
                 <div class="full-card">
                     <div class="deatil-tab-employ tool-tab">
                         <br><br>
-                        <div class="row">
-                            <div class="col-md-12 col-sm-12">
-                                <div class="search-filter">
-                                    <div class="col-md-8 col-sm-7"></div>
-                                    <div class="col-md-4 col-sm-5">
-                                        <div class="filter-form">
-                                            <div class="input-group">
-                                                <input type="text" class="form-control" placeholder="Search…">
-                                                <span class="input-group-btn">
-                                                    <button type="button" class="btn btn-default">Go</button>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
+                        <mat-chip-listbox aria-label="Fish selection" style="margin-left: 20px;">
+                            <mat-chip-option (click)="getData('sent')" color="accent">Candidature
+                                envoyée</mat-chip-option>
+                            <mat-chip-option (click)="getData('interview')">Entretien
+                                à
+                                venir</mat-chip-option>
+                            <mat-chip-option (click)="getData('rejected')">Candidature
+                                refusée</mat-chip-option>
+                            <mat-chip-option (click)="getData('all')" selected color="accent">Tous</mat-chip-option>
 
-                                </div>
-                            </div>
-                        </div>
+                        </mat-chip-listbox>
+                        <br>
                         <div style="padding:20px">
                             <article *ngFor="let a of apps">
                                 <div class="mng-company"
@@ -118,15 +112,16 @@
                                     </div>
                                     <div class="col-md-4 col-sm-4">
                                         <div class="mng-company-action">
-                                            <select class="form-control input-lg" [(ngModel)]="a.status" name="type">
+                                            <select style="border-radius: 10px;" class="form-control input-lg"
+                                                [(ngModel)]="a.status" name="type" (change)="updateStatus(a)">
                                                 <option value="sent">
-                                                    Candidature
+                                                    &#xf1d8; &nbsp; &nbsp;Candidature
                                                     envoyée
                                                 </option>
-                                                <option value="interview"> Entretien
+                                                <option value="interview">&#xf03d; &nbsp; &nbsp;Entretien
                                                     à
                                                     venir</option>
-                                                <option value="rejected"> Candidature
+                                                <option value="rejected">&#xf00d; &nbsp; &nbsp;Candidature
                                                     refusée</option>
                                             </select>
 

@@ -110,17 +110,60 @@ exports.deleteApp = (req, res, next) => {
 };
 
 exports.updateApp = (req, res, next) => {
+    const app = new App({
+        _id: req.params.id,
+        job: req.body.job,
+        user: req.body.user,
+        date: req.body.date,
 
-    const { _id, date, status, comment, job, user } = req.body;
-    const app = new App({ _id, date, status, comment, job, user });
+        status: req.body.status,
+        comment: req.body.comment,
 
+
+    });
     App.updateOne({ _id: req.params.id }, app)
         .then(result => {
             res.status(200).json({ message: "Update successful!" });
         })
         .catch(error => {
             res.status(500).json({
-                message: "Couldn't update App!"
+                message: "Couldn't update job!"
             });
         });
+};
+
+
+exports.countApps = async (req, res, next) => {
+    try {
+        const uid = req.query.uid;
+        let appQuery = App.find();
+
+        if (uid) {
+            appQuery = appQuery.where({ user: uid });
+        }
+
+        const models = await appQuery.exec();
+        console.log(models)
+
+        let sent = 0;
+        let interview = 0;
+        let rejected = 0;
+
+        models.forEach(m => {
+            if (m.status === "sent") sent++;
+            if (m.status === "interview") interview++;
+            if (m.status === "rejected") rejected++;
+        });
+
+        res.status(200).json({
+            message: "Apps fetched successfully!",
+            sent: sent,
+            interview: interview,
+            rejected: rejected
+        });
+    } catch (error) {
+        res.status(500).json({
+            message: "Fetching Apps failed! " + error.message
+        });
+    }
 };

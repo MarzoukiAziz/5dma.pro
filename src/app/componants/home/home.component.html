@@ -48,6 +48,16 @@
             <h1>
                 Recherches Précedentes
             </h1>
+            <div class="row extra-mrg">
+                <div *ngFor="let s of searchs" class="col-md-4 col-sm-6">
+
+                    <div class=" search-item" (click)="search(s)">
+                        <p>{{s.keys }} - {{s.place}}</p>
+                    </div>
+                </div>
+
+
+            </div>
         </div>
     </div>
 </section>

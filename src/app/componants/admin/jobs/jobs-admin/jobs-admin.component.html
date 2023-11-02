@@ -50,7 +50,7 @@
         <!--Browse Job In Grid-->
         <div class="row extra-mrg">
             <div *ngFor="let j of jobs" class="col-md-4 col-sm-6">
-                <div class="grid-view brows-job-list" routerLink="/admin/job/{{j._id}}">
+                <div class="grid-view brows-job-list" routerLink="/admin/job/{{j._id}}" routerLink="">
                     <div style="height: 280px;">
                         <div class="brows-job-company-img">
                             <img src="{{j.company.icon}}" class="img-responsive" alt="" />

@@ -7,6 +7,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { Subscription } from 'rxjs';
 import { PageEvent } from '@angular/material/paginator';
+import { AuthService } from 'src/app/services/auth.service';
+import { SearchsService } from 'src/app/services/searchs.service';
 @Component({
   selector: 'app-job-search',
   templateUrl: './job-search.component.html',
@@ -27,7 +29,9 @@ export class JobSearchComponent {
   constructor(
     private _service: JobService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private _auth: AuthService,
+    private _search: SearchsService
   ) {}
 
   ngOnInit() {
@@ -50,6 +54,9 @@ export class JobSearchComponent {
 
   onSubmit() {
     this.currentPage = 1;
+    if (this._auth.getIsAuth()) {
+      this._search.addSearch(this.keywords, this.location);
+    }
     this.getData();
   }
 

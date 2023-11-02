@@ -5,6 +5,8 @@ import { JobService } from 'src/app/services/jobs.service';
 
 import { Subscription } from 'rxjs';
 import { PageEvent } from '@angular/material/paginator';
+import { AuthService } from 'src/app/services/auth.service';
+import { SearchsService } from 'src/app/services/searchs.service';
 
 @Component({
   selector: 'app-jobs',
@@ -23,7 +25,11 @@ export class JobsComponent implements OnInit, OnDestroy {
   keywords = '';
   range = '';
 
-  constructor(private _service: JobService) {}
+  constructor(
+    private _service: JobService,
+    private _auth: AuthService,
+    private _search: SearchsService
+  ) {}
 
   ngOnInit() {
     this.getData();
@@ -42,6 +48,9 @@ export class JobsComponent implements OnInit, OnDestroy {
 
   onSubmit() {
     this.currentPage = 1;
+    if (this._auth.getIsAuth()) {
+      this._search.addSearch(this.keywords, this.location);
+    }
     this.getData();
   }
 
