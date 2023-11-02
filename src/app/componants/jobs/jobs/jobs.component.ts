@@ -7,6 +7,7 @@ import { Subscription } from 'rxjs';
 import { PageEvent } from '@angular/material/paginator';
 import { AuthService } from 'src/app/services/auth.service';
 import { SearchsService } from 'src/app/services/searchs.service';
+import { AppsService } from 'src/app/services/apps.service';
 
 @Component({
   selector: 'app-jobs',
@@ -24,16 +25,30 @@ export class JobsComponent implements OnInit, OnDestroy {
   location = '';
   keywords = '';
   range = '';
+  ids: any = [];
 
   constructor(
     private _service: JobService,
     private _auth: AuthService,
-    private _search: SearchsService
+    private _search: SearchsService,
+    private _app: AppsService
   ) {}
 
   ngOnInit() {
     this.getData();
-    const currentDate = new Date();
+    this._app
+      .getIds()
+      .pipe(
+        map((jobsData) => {
+          return {
+            ids: jobsData.ids,
+          };
+        })
+      )
+      .subscribe((transformedCompaniesData) => {
+        this.ids = transformedCompaniesData.ids;
+        console.log(this.ids);
+      });
   }
 
   onChangedPage(event: PageEvent) {

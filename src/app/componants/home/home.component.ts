@@ -55,7 +55,7 @@ export class HomeComponent {
   }
 
   onSubmit() {
-    if (this._auth.getIsAuth()) {
+    if (this._auth.getIsAuth() && this.keywords != '' && this.location != '') {
       this._search.addSearch(this.keywords, this.location);
     }
     this.router.navigate(['/offres/recherche'], {

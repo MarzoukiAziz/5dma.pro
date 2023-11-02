@@ -33,7 +33,6 @@ export class AppsService {
   }
 
   updateApp(app: App): Observable<App> {
-    console.log(app);
     return this.http.put<App>(BACKEND_URL + app._id, app);
   }
 
@@ -52,6 +51,17 @@ export class AppsService {
       apps: App[];
       maxApps: number;
     }>(BACKEND_URL + 'filtrer' + queryParams);
+  }
+
+  getIds(): Observable<{
+    message: string;
+    ids: any[];
+  }> {
+    const queryParams = `?uid=${this.auth.getUserId()}`;
+    return this.http.get<{
+      message: string;
+      ids: any[];
+    }>(BACKEND_URL + 'ids' + queryParams);
   }
 
   getCount(): Observable<{

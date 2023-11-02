@@ -62,7 +62,11 @@
                 <br>
 
                 <a (click)="openDialog()" href="{{job.link}}" target="_blank" class="btn btn-success">Postuler sur le
-                    site de l'entreprise</a>
+                    site de l'entreprise</a>&nbsp; &nbsp;&nbsp;<span *ngIf="applied"
+                    style="color: red;font-weight: 700;">Déja
+                    Candidaté</span>
+
+
 
             </div>
 
@@ -88,7 +92,8 @@
                         </div>
                     </div>
 
-                </div>
+                </div><span *ngIf="applied" style="color: red;font-weight: 700;">Déja
+                    Candidaté</span>
                 <a (click)="openDialog()" href="{{job.link}}" target="_blank"
                     class="btn btn-sidebar bt-1 bg-success">Postuler sur le site
                     de

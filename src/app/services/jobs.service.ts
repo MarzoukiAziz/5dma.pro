@@ -42,7 +42,7 @@ export class JobService {
     currentPage: number,
     keywords: string,
     location: string,
-    expired: Boolean,
+    expired: boolean,
     range: string
   ): Observable<{ message: string; jobs: Job[]; maxJobs: number }> {
     const queryParams = `?pagesize=${jobsPerPage}&page=${currentPage}&keywords=${keywords}&location=${location}&expired=${expired}&range=${range}`;

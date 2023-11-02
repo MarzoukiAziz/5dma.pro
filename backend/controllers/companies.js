@@ -149,7 +149,6 @@ exports.filtrerCompanies = (req, res, next) => {
     const keywords = req.query.keywords;
     const keywordArray = keywords.split(' ').map(keyword => new RegExp(keyword, 'i'));
 
-    console.log(keywords)
     if (keywords) {
         companyQuery.and([
             {
@@ -200,7 +199,6 @@ exports.filtrerCompanies = (req, res, next) => {
                 companies: documents,
                 maxCompanies: count
             });
-            console.log(count)
         })
         .catch(error => {
             res.status(500).json({

@@ -9,6 +9,7 @@ import { Subscription } from 'rxjs';
 import { PageEvent } from '@angular/material/paginator';
 import { AuthService } from 'src/app/services/auth.service';
 import { SearchsService } from 'src/app/services/searchs.service';
+import { AppsService } from 'src/app/services/apps.service';
 @Component({
   selector: 'app-job-search',
   templateUrl: './job-search.component.html',
@@ -25,13 +26,15 @@ export class JobSearchComponent {
   location = '';
   keywords = '';
   range = '';
+  ids: any = [];
 
   constructor(
     private _service: JobService,
     private route: ActivatedRoute,
     private router: Router,
     private _auth: AuthService,
-    private _search: SearchsService
+    private _search: SearchsService,
+    private _app: AppsService
   ) {}
 
   ngOnInit() {
@@ -39,6 +42,19 @@ export class JobSearchComponent {
       this.keywords = params['keywords'];
       this.location = params['location'];
       this.getData();
+      this._app
+        .getIds()
+        .pipe(
+          map((jobsData) => {
+            return {
+              ids: jobsData.ids,
+            };
+          })
+        )
+        .subscribe((transformedCompaniesData) => {
+          this.ids = transformedCompaniesData.ids;
+          console.log(this.ids);
+        });
     });
   }
 

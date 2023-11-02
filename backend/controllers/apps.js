@@ -143,8 +143,6 @@ exports.countApps = async (req, res, next) => {
         }
 
         const models = await appQuery.exec();
-        console.log(models)
-
         let sent = 0;
         let interview = 0;
         let rejected = 0;
@@ -166,4 +164,34 @@ exports.countApps = async (req, res, next) => {
             message: "Fetching Apps failed! " + error.message
         });
     }
+};
+exports.getAppsIds = (req, res, next) => {
+
+    const uid = req.query.uid;
+
+    let appQuery = App.find();
+
+    if (uid) {
+        appQuery = appQuery.where({ user: uid });
+    }
+    appQuery
+        .populate({
+            path: 'job',
+        })
+        .sort({ date: 'desc' })
+        .then(documents => {
+            ids = []
+            documents.forEach(doc => {
+                ids.push(doc.job._id)
+            })
+            res.status(200).json({
+                message: "Apps fetched successfully!",
+                ids: ids,
+            });
+        })
+        .catch(error => {
+            res.status(500).json({
+                message: "Fetching Apps failed! " + error
+            });
+        });
 };

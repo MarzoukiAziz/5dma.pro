@@ -75,9 +75,7 @@ exports.filtrerJobs = (req, res, next) => {
 
 
     let jobQuery = Job.find();
-    if (!expired) {
-        jobQuery.where({ expired: false })
-    }
+    let jobQueryCount = Job.find();
 
     if (keywordArray.length) {
         jobQuery.and([
@@ -89,18 +87,6 @@ exports.filtrerJobs = (req, res, next) => {
                 ]
             }
         ]);
-    }
-
-    if (location) {
-        jobQuery = jobQuery.where({ location: new RegExp(location, 'i') });
-    }
-
-
-
-
-    let jobQueryCount = Job.find();
-    if (!expired) {
-        jobQueryCount.where({ expired: false })
     }
 
     if (keywordArray.length) {
@@ -117,6 +103,14 @@ exports.filtrerJobs = (req, res, next) => {
 
     if (location) {
         jobQueryCount = jobQueryCount.where({ location: new RegExp(location, 'i') });
+        jobQuery = jobQuery.where({ location: new RegExp(location, 'i') });
+
+    }
+
+    if (expired == 'false') {
+        jobQuery = jobQuery.where({ expired: false })
+        jobQueryCount = jobQueryCount.where({ expired: false })
+
     }
     count = 0
 
@@ -124,8 +118,6 @@ exports.filtrerJobs = (req, res, next) => {
         .then(function (models) {
             count = models.length
         })
-
-
 
     if (range === '1') {
         const r = new Date(Date.now() - 1 * 24 * 60 * 60 * 1000);
@@ -139,9 +131,6 @@ exports.filtrerJobs = (req, res, next) => {
         const r = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000);
         jobQuery = jobQuery.where({ date: { $gte: r } });
     }
-
-
-
 
     if (pageSize && currentPage) {
         jobQuery.skip(pageSize * (currentPage - 1)).limit(pageSize);

@@ -10,6 +10,8 @@ import {
 
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from '../dialog/dialog.component';
+import { AppsService } from 'src/app/services/apps.service';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-job-detail',
@@ -19,23 +21,44 @@ import { DialogComponent } from '../dialog/dialog.component';
 export class JobDetailComponent {
   job?: Job;
   content!: SafeHtml;
+  ids: any = [];
+  applied = false;
 
   constructor(
     private _service: JobService,
     private route: ActivatedRoute,
     private router: Router,
     private dialog: MatDialog,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private _app: AppsService
   ) {}
 
   ngOnInit(): void {
     this._service.getJob(this.route.snapshot.params['id']).subscribe((res) => {
       this.job = res;
       this.content = this.sanitizer.bypassSecurityTrustHtml(this.job.details);
+      this._app
+        .getIds()
+        .pipe(
+          map((jobsData) => {
+            return {
+              ids: jobsData.ids,
+            };
+          })
+        )
+        .subscribe((transformedCompaniesData) => {
+          this.ids = transformedCompaniesData.ids;
+          if (this.ids.includes(this.job._id)) {
+            this.applied = true;
+          }
+        });
     });
   }
 
   openDialog(): void {
+    if (this.applied) {
+      return;
+    }
     const dialogRef = this.dialog.open(DialogComponent, {
       width: '60rem',
       data: this.job,

@@ -13,6 +13,7 @@ router.put("/:id", AppController.updateApp);
 
 router.get("/filtrer", AppController.filtrerApps);
 router.get("/count", AppController.countApps);
+router.get("/ids", AppController.getAppsIds)
 
 
 router.get("/:id", AppController.getApp);

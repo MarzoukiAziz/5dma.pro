@@ -53,7 +53,7 @@
 
             <div *ngFor="let j of jobs" class="col-md-4 col-sm-6">
                 <div class="grid-view brows-job-list" routerLink="/offre/{{j._id}}"
-                    style="border: 1px solid #00000030;">
+                    [style]="ids.includes(j._id)?'border: 1px solid #00000030;background-color: #00000010;':'border: 1px solid #00000030;'">
                     <div style="height: 250px;">
                         <div class="brows-job-company-img">
                             <img src="{{j.company.icon}}" class="img-responsive" alt="" />
@@ -88,7 +88,7 @@
                             <p>{{transform(j.date)}}</p>
                         </div>
                     </ul>
-                    <!-- <span class="tg-themetag tg-featuretag">Premium</span> -->
+                    <span *ngIf="ids.includes(j._id)" class="tg-themetag tg-featuretag">Candidate</span>
                 </div>
             </div>
 

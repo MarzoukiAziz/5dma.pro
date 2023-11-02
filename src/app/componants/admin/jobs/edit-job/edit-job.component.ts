@@ -31,7 +31,6 @@ export class EditJobComponent {
   }
 
   onSubmit() {
-    console.log(this.job);
     this._service.updateJob(this.job);
   }
 
