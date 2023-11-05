@@ -1,23 +1,9 @@
 <title>5dmaPro</title>
 
-<section class="slide-banner scroll-con-sec hero-section" data-scrollax-parent="true" id="sec1">
-    <div class="slideshow-container">
-        <div class="slideshow-item">
-            <div class="bg" data-bg="assets/img/banner-3.jpg"></div>
-        </div>
-        <div class="slideshow-item">
-            <div class="bg" data-bg="assets/img/banner-6.jpg"></div>
-        </div>
-        <div class="slideshow-item">
-            <div class="bg" data-bg="assets/img/banner-5.jpg"></div>
-        </div>
-        <div class="slideshow-item">
-            <div class="bg" data-bg="assets/img/banner-2.jpg"></div>
-        </div>
-    </div>
-    <div class="overlay"></div>
-    <div class="hero-section-wrap fl-wrap">
-        <div class="container">
+<section class="slide-banner" data-scrollax-parent="true" style="    min-height: 800px;">
+
+    <div class="hero-section-wrap bg">
+        <div class="container" style="    margin-top: 200px;">
             <div class="intro-item fl-wrap">
                 <div class="caption text-center cl-white">
                     <h2> Trouvez Votre Stage Idéal !
@@ -44,20 +30,21 @@
                     </div>
                 </form>
             </div>
-            <br><br>
-            <h1>
-                Recherches Précedentes
-            </h1>
-            <div class="row extra-mrg">
-                <div *ngFor="let s of searchs" class="col-md-4 col-sm-6">
 
-                    <div class=" search-item" (click)="search(s)">
-                        <p>{{s.keys }} - {{s.place}}</p>
-                    </div>
+        </div>
+        <br><br>
+
+        <div class="row extra-mrg" style="margin: 10%;">
+
+
+            <div *ngFor="let s of searchs" class="col-md-4 col-sm-4 col-xm-6">
+
+                <div class=" search-item" (click)="search(s)">
+                    <p>{{s.keys }} - {{s.place}}</p>
                 </div>
-
-
             </div>
+
+
         </div>
     </div>
 </section>

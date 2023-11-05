@@ -46,9 +46,7 @@ export class AuthService {
   createUser(user: User) {
     this.http.post(BACKEND_URL + 'sign-up', user).subscribe(
       () => {
-        this.router.navigate(['/']).then(() => {
-          window.location.reload();
-        });
+        this.router.navigate(['/']);
       },
       (error) => {
         alert(
@@ -82,9 +80,7 @@ export class AuthService {
             );
             console.log(expirationDate);
             this.saveAuthData(token, expirationDate, this.userId);
-            this.router.navigate(['/']).then(() => {
-              window.location.reload();
-            });
+            this.router.navigate(['/']);
           }
         },
         (error) => {

@@ -13,25 +13,27 @@ import { PageEvent } from '@angular/material/paginator';
 })
 export class CompaniesClientComponent implements OnInit, OnDestroy {
   companies: Company[];
+  isLoading = false;
   companiesCount: number;
-
   companiesPerPage = 10;
   pageSizeOptions = [6, 12, 24, 32];
   currentPage = 1;
   private postsSub: Subscription;
   keywords = '';
-
+  pageEvent: PageEvent;
   constructor(private _service: CompanyService) {}
 
   ngOnInit() {
     this.getData();
   }
 
-  onChangedPage(event: PageEvent) {
+  onChangedPage(event: PageEvent): PageEvent {
     this.currentPage = event.pageIndex + 1;
     this.companiesPerPage = event.pageSize;
     this.getData();
+    return event;
   }
+
   onSubmit() {
     this.currentPage = 1;
     this.getData();

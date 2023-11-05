@@ -1,7 +1,7 @@
 <title>Entreprises à découvrir</title>
 
 <!-- Title Header Start -->
-<section class="inner-header-title" style="background-image:url(assets/img/banner-10.jpg);">
+<section class="inner-header-title" style="background-image:url(assets/img/banner-4.jpg);">
     <div class="container">
         <h1>Entreprises à découvrir</h1>
     </div>
@@ -65,8 +65,10 @@
                 </div>
             </article>
         </div>
-        <mat-paginator [length]="companiesCount" [pageSize]="companiesPerPage" *ngIf="companies.length > 0"
-            [pageSizeOptions]="pageSizeOptions" (page)="onChangedPage($event)"></mat-paginator>
+        <mat-paginator [length]="companiesCount" [pageSize]="companiesPerPage" label="" (page)="onChangedPage($event)">
+        </mat-paginator>
+
+
 
     </div>
 </section>

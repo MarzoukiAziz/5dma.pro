@@ -40,6 +40,7 @@ import { NotfoundComponent } from './componants/common/notfound/notfound.compone
 import { MatDialogModule } from '@angular/material/dialog';
 import { DialogComponent } from './componants/jobs/dialog/dialog.component';
 import { PlansComponent } from './componants/services/plans/plans.component';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 @NgModule({
   declarations: [
@@ -83,6 +84,7 @@ import { PlansComponent } from './componants/services/plans/plans.component';
     MatChipsModule,
     MatProgressSpinnerModule,
     MatDialogModule,
+    MatGridListModule,
     ToastrModule.forRoot(), // ToastrModule added
   ],
   providers: [

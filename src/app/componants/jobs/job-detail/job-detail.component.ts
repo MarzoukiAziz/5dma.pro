@@ -12,6 +12,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from '../dialog/dialog.component';
 import { AppsService } from 'src/app/services/apps.service';
 import { map } from 'rxjs';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-job-detail',
@@ -30,28 +31,31 @@ export class JobDetailComponent {
     private router: Router,
     private dialog: MatDialog,
     private sanitizer: DomSanitizer,
-    private _app: AppsService
+    private _app: AppsService,
+    private _auth: AuthService
   ) {}
 
   ngOnInit(): void {
     this._service.getJob(this.route.snapshot.params['id']).subscribe((res) => {
       this.job = res;
       this.content = this.sanitizer.bypassSecurityTrustHtml(this.job.details);
-      this._app
-        .getIds()
-        .pipe(
-          map((jobsData) => {
-            return {
-              ids: jobsData.ids,
-            };
-          })
-        )
-        .subscribe((transformedCompaniesData) => {
-          this.ids = transformedCompaniesData.ids;
-          if (this.ids.includes(this.job._id)) {
-            this.applied = true;
-          }
-        });
+      if (this._auth.getIsAuth()) {
+        this._app
+          .getIds()
+          .pipe(
+            map((jobsData) => {
+              return {
+                ids: jobsData.ids,
+              };
+            })
+          )
+          .subscribe((transformedCompaniesData) => {
+            this.ids = transformedCompaniesData.ids;
+            if (this.ids.includes(this.job._id)) {
+              this.applied = true;
+            }
+          });
+      }
     });
   }
 
@@ -67,19 +71,6 @@ export class JobDetailComponent {
     dialogRef.afterClosed().subscribe((result) => {
       console.log(`Dialog result: ${result}`);
     });
-  }
-
-  confirmDelete(): void {
-    const result = window.confirm('Are you sure you want to delete this job?');
-
-    if (result) {
-      this._service.deleteJob(this.job._id.toString()).subscribe((res) => {
-        this.router.navigate(['/admin/jobs']);
-      });
-      console.log('Job deleted.');
-    } else {
-      console.log('Deletion cancelled.');
-    }
   }
 
   transform(value: Date): string {
