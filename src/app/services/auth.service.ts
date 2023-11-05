@@ -78,7 +78,7 @@ export class AuthService {
             const expirationDate = new Date(
               now.getTime() + expiresInDuration * 1000
             );
-            console.log(expirationDate);
+            console.log('data' + this.userId + expirationDate + token);
             this.saveAuthData(token, expirationDate, this.userId);
             this.router.navigate(['/']);
           }
@@ -94,6 +94,7 @@ export class AuthService {
 
   autoAuthUser() {
     const authInformation = this.getAuthData();
+    console.log(authInformation);
     if (!authInformation) {
       return;
     }
@@ -145,6 +146,7 @@ export class AuthService {
     const token = localStorage.getItem('token');
     const expirationDate = localStorage.getItem('expiration');
     const userId = localStorage.getItem('userId');
+    alert(userId);
     if (!token || !expirationDate) {
       return null;
     }

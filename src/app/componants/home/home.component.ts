@@ -24,19 +24,21 @@ export class HomeComponent {
     private _search: SearchsService,
     private _auth: AuthService
   ) {
-    this._search
-      .getSearch()
-      .pipe(
-        map((appsData) => {
-          return {
-            message: appsData.message,
-            searchs: appsData.searchs,
-          };
-        })
-      )
-      .subscribe((transformedCompaniesData) => {
-        this.searchs = transformedCompaniesData.searchs;
-      });
+    if (this._auth.getIsAuth()) {
+      this._search
+        .getSearch()
+        .pipe(
+          map((appsData) => {
+            return {
+              message: appsData.message,
+              searchs: appsData.searchs,
+            };
+          })
+        )
+        .subscribe((transformedCompaniesData) => {
+          this.searchs = transformedCompaniesData.searchs;
+        });
+    }
 
     this._service
       .getJobs(8, 1)
