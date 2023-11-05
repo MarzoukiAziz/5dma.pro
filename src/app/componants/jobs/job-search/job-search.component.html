@@ -50,53 +50,60 @@
 
         <!--Browse Job In Grid-->
         <div class="row extra-mrg">
-
-            <div *ngFor="let j of jobs" class="col-md-4 col-sm-6">
-                <a routerLink="/offre/{{j._id}}">
-
-                    <div class="grid-view brows-job-list"
-                        [style]="ids.includes(j._id)?'border: 1px solid #00000030;background-color: #00000010;':'border: 1px solid #00000030;'">
-                        <div style="height: 250px;">
-                            <div class="brows-job-company-img">
-                                <img src="{{j.company.icon}}" class="img-responsive" alt="" />
-                            </div>
-                            <div class="brows-job-position">
-                                <h3>{{j.title}}</h3>
-                                <p><strong>{{j.company.name}}</strong></p>
-                            </div>
-                            <div class="job-position">
-                                <span class="job-num">{{j.function}}</span>
-                            </div>
-                            <div class="brows-job-type">
-                                <span class="full-time">{{j.contract}}</span>
-                            </div>
-
-
-                        </div>
-
-
-
-                        <ul class="grid-view-caption">
-
-
-                            <div class="brows-job-location" style="margin: auto !important; padding: 15px 0px;
-                        width: fit-content;">
-                                <p><i class="fa fa-map-marker"></i>&nbsp;&nbsp;{{j.location}}</p>
-                            </div>
-
-                        </ul>
-                        <ul>
-                            <div style="margin: auto !important;">
-                                <p>{{transform(j.date)}}</p>
-                            </div>
-                        </ul>
-                        <span *ngIf="ids.includes(j._id)" class="tg-themetag tg-featuretag">Candidate</span>
-                    </div>
-                </a>
+            <div style="    margin: auto;
+            width: max-content;
+            padding: 100px;" *ngIf="loading">
+                <mat-spinner></mat-spinner>
             </div>
+            <div *ngIf="loading ==false">
+
+                <div *ngFor="let j of jobs" class="col-md-4 col-sm-6" v>
+                    <a routerLink="/offre/{{j._id}}">
+                        <div class="grid-view brows-job-list"
+                            [style]="ids.includes(j._id)?'border: 1px solid #00000030;background-color: #00000010;':'border: 1px solid #00000030;'">
+                            <div style="height: 250px;">
+                                <div class="brows-job-company-img">
+                                    <img src="{{j.company.icon}}" class="img-responsive" alt="" />
+                                </div>
+                                <div class="brows-job-position">
+                                    <h3>{{j.title}}</h3>
+                                    <p><strong>{{j.company.name}}</strong></p>
+                                </div>
+                                <div class="job-position">
+                                    <span class="job-num">{{j.function}}</span>
+                                </div>
+                                <div class="brows-job-type">
+                                    <span class="full-time">{{j.contract}}</span>
+                                </div>
 
 
+                            </div>
+
+
+
+                            <ul class="grid-view-caption">
+
+
+                                <div class="brows-job-location" style="margin: auto !important; padding: 15px 0px;
+                        width: fit-content;">
+                                    <p><i class="fa fa-map-marker"></i>&nbsp;&nbsp;{{j.location}}</p>
+                                </div>
+
+                            </ul>
+                            <ul>
+                                <div style="margin: auto !important;">
+                                    <p>{{transform(j.date)}}</p>
+                                </div>
+                            </ul>
+                            <span *ngIf="ids.includes(j._id)" class="tg-themetag tg-featuretag">Candidate</span>
+                        </div>
+                    </a>
+                </div>
+
+
+            </div>
         </div>
+
         <mat-paginator [length]="jobsCount" [pageSize]="jobsPerPage" *ngIf="jobs.length > 0"
             [pageSizeOptions]="pageSizeOptions" (page)="onChangedPage($event)"></mat-paginator>
     </div>

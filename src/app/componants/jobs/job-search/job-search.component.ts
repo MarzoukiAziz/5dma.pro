@@ -27,6 +27,7 @@ export class JobSearchComponent {
   keywords = '';
   range = '';
   ids: any = [];
+  loading = true;
 
   constructor(
     private _service: JobService,
@@ -90,6 +91,7 @@ export class JobSearchComponent {
   }
 
   getData() {
+    this.loading = true;
     this.postsSub = this._service
       .filtrerJobs(
         this.jobsPerPage,
@@ -110,6 +112,7 @@ export class JobSearchComponent {
       .subscribe((transformedCompaniesData) => {
         this.jobs = transformedCompaniesData.jobs;
         this.jobsCount = transformedCompaniesData.jobsCount;
+        this.loading = false;
       });
   }
 

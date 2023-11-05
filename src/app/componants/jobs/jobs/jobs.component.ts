@@ -8,6 +8,7 @@ import { PageEvent } from '@angular/material/paginator';
 import { AuthService } from 'src/app/services/auth.service';
 import { SearchsService } from 'src/app/services/searchs.service';
 import { AppsService } from 'src/app/services/apps.service';
+import { load } from 'dotenv';
 
 @Component({
   selector: 'app-jobs',
@@ -26,6 +27,7 @@ export class JobsComponent implements OnInit, OnDestroy {
   keywords = '';
   range = '';
   ids: any = [];
+  loading = true;
 
   constructor(
     private _service: JobService,
@@ -35,7 +37,6 @@ export class JobsComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.getData();
     this._app
       .getIds()
       .pipe(
@@ -47,7 +48,7 @@ export class JobsComponent implements OnInit, OnDestroy {
       )
       .subscribe((transformedCompaniesData) => {
         this.ids = transformedCompaniesData.ids;
-        console.log(this.ids);
+        this.getData();
       });
   }
 
@@ -83,6 +84,7 @@ export class JobsComponent implements OnInit, OnDestroy {
   }
 
   getData() {
+    this.loading = true;
     this.postsSub = this._service
       .filtrerJobs(
         this.jobsPerPage,
@@ -103,6 +105,7 @@ export class JobsComponent implements OnInit, OnDestroy {
       .subscribe((transformedCompaniesData) => {
         this.jobs = transformedCompaniesData.jobs;
         this.jobsCount = transformedCompaniesData.jobsCount;
+        this.loading = false;
       });
   }
 

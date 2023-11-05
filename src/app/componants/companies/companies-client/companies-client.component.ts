@@ -13,7 +13,7 @@ import { PageEvent } from '@angular/material/paginator';
 })
 export class CompaniesClientComponent implements OnInit, OnDestroy {
   companies: Company[];
-  isLoading = false;
+  loading = true;
   companiesCount: number;
   companiesPerPage = 10;
   pageSizeOptions = [6, 12, 24, 32];
@@ -44,6 +44,7 @@ export class CompaniesClientComponent implements OnInit, OnDestroy {
   }
 
   getData() {
+    this.loading = true;
     this.postsSub = this._service
       .getCompanies(this.companiesPerPage, this.currentPage, this.keywords)
       .pipe(
@@ -57,6 +58,7 @@ export class CompaniesClientComponent implements OnInit, OnDestroy {
       .subscribe((transformedCompaniesData) => {
         this.companies = transformedCompaniesData.companies;
         this.companiesCount = transformedCompaniesData.maxCompanies;
+        this.loading = false;
       });
   }
 }
