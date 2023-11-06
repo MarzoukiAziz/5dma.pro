@@ -37,19 +37,23 @@ export class JobsComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this._app
-      .getIds()
-      .pipe(
-        map((jobsData) => {
-          return {
-            ids: jobsData.ids,
-          };
-        })
-      )
-      .subscribe((transformedCompaniesData) => {
-        this.ids = transformedCompaniesData.ids;
-        this.getData();
-      });
+    if (this._auth.getIsAuth()) {
+      this._app
+        .getIds()
+        .pipe(
+          map((jobsData) => {
+            return {
+              ids: jobsData.ids,
+            };
+          })
+        )
+        .subscribe((transformedCompaniesData) => {
+          this.ids = transformedCompaniesData.ids;
+          this.getData();
+        });
+    } else {
+      this.getData();
+    }
   }
 
   onChangedPage(event: PageEvent) {

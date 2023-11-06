@@ -21,6 +21,12 @@ export class AddJobComponent implements OnInit {
   ) {
     this._componyService.getAllCompanies().subscribe((res) => {
       this.companies = res;
+      (this.job.contract = 'Stage 4 à 6 mois'),
+        (this.job.function = 'Développement Informatique');
+      this.job.startingDate = 'Dès que possible';
+      this.job.deadline = 'L’offre sera retirée quand le poste sera pourvu.';
+      this.job.remote = 'Télétravail ponctuel autorisé';
+      this.job.company = res[res.length - 1];
     });
   }
 

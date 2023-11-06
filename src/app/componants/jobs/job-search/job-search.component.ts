@@ -43,19 +43,20 @@ export class JobSearchComponent {
       this.keywords = params['keywords'];
       this.location = params['location'];
       this.getData();
-      this._app
-        .getIds()
-        .pipe(
-          map((jobsData) => {
-            return {
-              ids: jobsData.ids,
-            };
-          })
-        )
-        .subscribe((transformedCompaniesData) => {
-          this.ids = transformedCompaniesData.ids;
-          console.log(this.ids);
-        });
+      if (this._auth.getIsAuth())
+        this._app
+          .getIds()
+          .pipe(
+            map((jobsData) => {
+              return {
+                ids: jobsData.ids,
+              };
+            })
+          )
+          .subscribe((transformedCompaniesData) => {
+            this.ids = transformedCompaniesData.ids;
+            console.log(this.ids);
+          });
     });
   }
 
