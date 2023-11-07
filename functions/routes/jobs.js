@@ -4,6 +4,8 @@ const checkAuth = require("../middleware/check-auth");
 
 const router = express.Router();
 
+router.post("/scrapper", JobController.createJobFromScrapper);
+
 router.post("", JobController.createJob);
 router.put("/:id", checkAuth, JobController.updateJob);
 router.get("/all", checkAuth, JobController.getAllJobs);

@@ -1,4 +1,7 @@
 const Job = require("../models/job");
+const Company = require("../models/company")
+
+
 
 exports.createJob = (req, res, next) => {
 
@@ -246,3 +249,105 @@ exports.updateJob = (req, res, next) => {
             });
         });
 };
+
+exports.createJobFromScrapper = async (req, res, next) => {
+
+    companyName = req.body.companyName
+    const company = await Company.findOne({ name: companyName }).exec();
+
+
+    if (company) {
+        const job = new Job({
+            title: req.body.title,
+            contract: "Stage",
+            location: req.body.location,
+            date: new Date(),
+            remote: "Télétravail non spécifié",
+            details: req.body.details,
+            function: "Développement Informatique",
+            startingDate: "Non spécifié",
+            deadline: "L’offre sera retirée quand le poste sera pourvu.",
+            link: req.body.link,
+            company: company,
+            expired: false
+        });
+        job
+            .save()
+            .then(createdJob => {
+                res.status(201).json({
+                    message: "Job added successfully",
+                    job: {
+                        ...createdJob,
+                        id: createdJob._id
+                    }
+                });
+            })
+            .catch(error => {
+                res.status(500).json({
+                    message: "Creating a job failed! " + error
+
+                });
+            });
+    } else {
+        const c = new Company({
+
+            name: req.body.companyName,
+            description: req.body.companyDetails,
+            location: req.body.companyLocation,
+            secteur: req.body.companyIndus,
+            type: "",
+            linkedin: "",
+            twitter: "",
+            website: req.body.companyLink,
+            creationDate: req.body.companyCreation,
+            internationalPresence: "",
+            icon: req.body.companyLogo,
+        });
+        c
+            .save()
+            .then(createdCompany => {
+                const job = new Job({
+                    title: req.body.title,
+                    contract: "Stage",
+                    location: req.body.location,
+                    date: new Date(),
+                    remote: "Télétravail non spécifié",
+                    details: req.body.details,
+                    function: "Développement Informatique",
+                    startingDate: "Non spécifié",
+                    deadline: "L’offre sera retirée quand le poste sera pourvu.",
+                    link: req.body.link,
+                    company: createdCompany,
+                    expired: false
+                });
+                job
+                    .save()
+                    .then(createdJob => {
+                        res.status(201).json({
+                            message: "Job added successfully",
+                            job: {
+                                ...createdJob,
+                                id: createdJob._id
+                            }
+                        });
+                    })
+                    .catch(error => {
+                        res.status(500).json({
+                            message: "Creating a job failed! " + error
+
+                        });
+                    });
+            })
+            .catch(error => {
+                res.status(500).json({
+                    message: "Creating a company failed! " + error
+                });
+            });
+    }
+
+
+
+
+};
+
+

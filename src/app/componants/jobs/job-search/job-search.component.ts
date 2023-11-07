@@ -42,8 +42,7 @@ export class JobSearchComponent {
     this.route.queryParams.subscribe((params) => {
       this.keywords = params['keywords'];
       this.location = params['location'];
-      this.getData();
-      if (this._auth.getIsAuth())
+      if (this._auth.getIsAuth()) {
         this._app
           .getIds()
           .pipe(
@@ -55,8 +54,11 @@ export class JobSearchComponent {
           )
           .subscribe((transformedCompaniesData) => {
             this.ids = transformedCompaniesData.ids;
-            console.log(this.ids);
+            this.getData();
           });
+      } else {
+        this.getData();
+      }
     });
   }
 

@@ -59,3 +59,4 @@ app.use((req, res, next) => {
 
 
 exports.app = functions.https.onRequest(app);
+//module.exports = app

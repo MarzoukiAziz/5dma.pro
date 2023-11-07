@@ -11,6 +11,7 @@ import { AddJobComponent } from './componants/admin/jobs/add-job/add-job.compone
 import { EditJobComponent } from './componants/admin/jobs/edit-job/edit-job.component';
 import { JobAdminComponent } from './componants/admin/jobs/job-admin/job-admin.component';
 import { JobsAdminComponent } from './componants/admin/jobs/jobs-admin/jobs-admin.component';
+import { JobteaserScrapperComponent } from './componants/admin/jobs/jobteaser-scrapper/jobteaser-scrapper.component';
 import { UsersComponent } from './componants/admin/users/users.component';
 import { NotfoundComponent } from './componants/common/notfound/notfound.component';
 import { TemplateComponent } from './componants/common/template/template.component';
@@ -104,6 +105,11 @@ const routes: Routes = [
       {
         path: 'admin/job/:id/edit',
         component: EditJobComponent,
+        canActivate: [AdminGuard],
+      },
+      {
+        path: 'admin/jobteaser',
+        component: JobteaserScrapperComponent,
         canActivate: [AdminGuard],
       },
       {
