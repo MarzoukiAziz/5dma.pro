@@ -13,10 +13,14 @@ import { PageEvent } from '@angular/material/paginator';
 })
 export class CompaniesClientComponent implements OnInit, OnDestroy {
   companies: Company[];
+  companies1: Company[];
+
+  companies2: Company[];
+
   loading = true;
   companiesCount: number;
-  companiesPerPage = 10;
-  pageSizeOptions = [6, 12, 24, 32];
+  companiesPerPage = 20;
+  pageSizeOptions = [20, 40];
   currentPage = 1;
   private postsSub: Subscription;
   keywords = '';
@@ -58,6 +62,9 @@ export class CompaniesClientComponent implements OnInit, OnDestroy {
       .subscribe((transformedCompaniesData) => {
         this.companies = transformedCompaniesData.companies;
         this.companiesCount = transformedCompaniesData.maxCompanies;
+        this.companies1 = this.companies.slice(0, 10);
+        this.companies2 = this.companies.slice(10, 20);
+
         this.loading = false;
       });
   }

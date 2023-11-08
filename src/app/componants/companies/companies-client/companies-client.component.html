@@ -3,7 +3,7 @@
 <!-- Title Header Start -->
 <section class="inner-header-title" style="background-image:url(assets/img/banner-4.jpg);">
     <div class="container">
-        <h1>Entreprises à découvrir</h1>
+        <h1><span style="color:#11b719 ;">{{companiesCount}}</span> Entreprises à découvrir</h1>
     </div>
 </section>
 <div class="clearfix"></div>
@@ -40,38 +40,63 @@
             padding: 100px;" *ngIf="loading">
             <mat-spinner></mat-spinner>
         </div>
-        <div *ngIf="loading ==false">
-            <div class="item-click" *ngFor="let c of companies">
-                <article>
-                    <div class="brows-company">
-                        <div class="col-md-2 col-sm-2">
-                            <div class="brows-company-pic">
-                                <a routerLink="/entreprise/{{c._id}}"><img src="{{c.icon}}" class="img-responsive"
-                                        alt="" /></a>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-sm-4">
-                            <div class="brows-company-name">
-                                <a routerLink="/entreprise/{{c._id}}">
-                                    <h4>{{c.name}}</h4>
-                                </a>
-                                <span class="brows-company-tagline">{{c.secteur}}</span>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-sm-4">
-                            <div class="brows-company-location">
-                                <p><i class="fa fa-map-marker"></i> {{c.location}}</p>
-                            </div>
-                        </div>
-                        <!-- <div class="col-md-2 col-sm-2">
-                                <div class="brows-company-position">
-                                    <p>04 Opening</p>
+        <div class="row" *ngIf="loading ==false">
+            <div class="col-md-6 col-sm-12">
+                <div class="item-click " *ngFor="let c of companies1">
+                    <article>
+                        <div class="brows-company">
+                            <div class="col-md-2 col-sm-2">
+                                <div class="brows-company-pic">
+                                    <a routerLink="/entreprise/{{c._id}}"><img src="{{c.icon}}" class="img-responsive"
+                                            alt="" /></a>
                                 </div>
-                            </div> -->
-                    </div>
-                </article>
+                            </div>
+                            <div class="col-md-1 col-sm-1"></div>
+                            <div class="col-md-9 col-sm-9">
+                                <div class="brows-company-name">
+                                    <a routerLink="/entreprise/{{c._id}}">
+                                        <h4>{{c.name}}</h4>
+                                    </a>
+                                    <span class="brows-company-tagline">{{c.secteur}}</span>
+                                    <p><i class="fa fa-map-marker"></i> {{c.location}}</p>
+
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </article>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <div class="item-click " *ngFor="let c of companies2">
+                    <article>
+                        <div class="brows-company">
+                            <div class="col-md-2 col-sm-2">
+                                <div class="brows-company-pic">
+                                    <a routerLink="/entreprise/{{c._id}}"><img src="{{c.icon}}" class="img-responsive"
+                                            alt="" /></a>
+                                </div>
+                            </div>
+                            <div class="col-md-1 col-sm-1"></div>
+                            <div class="col-md-9 col-sm-9">
+                                <div class="brows-company-name">
+                                    <a routerLink="/entreprise/{{c._id}}">
+                                        <h4>{{c.name}}</h4>
+                                    </a>
+                                    <span class="brows-company-tagline">{{c.secteur}}</span>
+                                    <p><i class="fa fa-map-marker"></i> {{c.location}}</p>
+
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </article>
+                </div>
             </div>
         </div>
+
 
         <mat-paginator [length]="companiesCount" [pageSize]="companiesPerPage" label="" (page)="onChangedPage($event)">
         </mat-paginator>

@@ -3,9 +3,8 @@
     <div class="container">
 
         <div class="col-md-8">
-            <div class="left-side-container">
-                <div class="freelance-image"><img src="{{job.company.icon}}" class="img-responsive" alt=""></div>
-                <br>
+            <div class="left-side-container" style="display: flex;">
+                <img src="{{job.company.icon}}" alt="" class="img-top">
                 <div class="header-details">
                     <h4>{{job.title}}</h4>
                     <p style="color: #febe42;">{{job.company.name}}</p>
@@ -40,71 +39,38 @@
 <section *ngIf="job">
     <div class="container">
 
-        <div class="col-md-8 col-sm-8">
-            <div class="container-detail-box">
-
-                <div class="apply-job-detail">
-                    <h5>Requirements</h5>
-                    <ul class="job-requirements">
-                        <li><span>Date de début</span> {{job.startingDate}}</li>
-                        <li><span>Date limite de candidature
-                            </span> {{job.deadline}}</li>
-                        <li><span>Fonction</span>{{job.function}}</li>
-
-                    </ul>
-
-
-                </div>
-
-                <div [innerHTML]="content" style="color: black !important;">
-
-                </div>
-                <br>
-
-                <a (click)="openDialog()" href="{{job.link}}" target="_blank" class="btn btn-success">Postuler sur le
-                    site de l'entreprise</a>&nbsp; &nbsp;&nbsp;<span *ngIf="applied"
-                    style="color: red;font-weight: 700;">Déja
-                    Candidaté</span>
-
-
-
+        <div class="container-detail-box">
+            <div class="apply-job-detail">
+                <ul class="job-requirements">
+                    <li><span>Date de début</span> {{job.startingDate}}</li>
+                    <li><span>Date limite de candidature
+                        </span> {{job.deadline}}</li>
+                </ul>
             </div>
-
-
+            <div [innerHTML]="content" style="color: black !important;">
+            </div>
         </div>
+        <div class="sidebar-container">
+            <div class="sidebar-box" routerLink="/entreprise/{{job.company._id}}">
+                <div class="sidebar-inner-box">
+                    <span *ngIf="applied" style="color: red;font-weight: 700;">Déja
+                        Candidaté</span><br><br>
+                    <a (click)="openDialog()" href="{{job.link}}" target="_blank"
+                        class="btn btn-sidebar bt-1 bg-success">Postuler sur le site
+                        de
+                        l'entreprise</a>
 
-        <!-- Sidebar Start-->
-        <div class="col-md-4 col-sm-4">
-
-            <!-- Job Detail -->
-            <div class="sidebar-container">
-                <div class="sidebar-box" routerLink="/entreprise/{{job.company._id}}">
-                    <span class="sidebar-status">{{job.company.type}}</span>
-                    <div class="sidebar-inner-box">
-                        <br>
-                        <div>
-                            <img src="{{job.company.icon}}" class="img-responsive" alt="" />
-                        </div>
-                        <div class="sidebar-box-detail">
-                            <h4>{{job.company.name}}</h4>
-                            <span class="desination">{{job.company.description}}</span>
-
-                        </div>
+                    <br><br><br>
+                    <div>
+                        <img src="{{job.company.icon}}" class="img-mid" alt="" />
                     </div>
-
-                </div><span *ngIf="applied" style="color: red;font-weight: 700;">Déja
-                    Candidaté</span>
-                <a (click)="openDialog()" href="{{job.link}}" target="_blank"
-                    class="btn btn-sidebar bt-1 bg-success">Postuler sur le site
-                    de
-                    l'entreprise</a>
+                    <br>
+                    <div class="sidebar-box-detail">
+                        <span class="desination">{{job.company.description}}</span>
+                    </div>
+                </div>
             </div>
-
-
-
         </div>
-        <!-- End Sidebar -->
-
     </div>
 </section>
 <!-- Job Detail End -->

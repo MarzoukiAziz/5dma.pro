@@ -139,14 +139,10 @@ exports.updateCompany = (req, res, next) => {
 
 
 exports.filtrerCompanies = (req, res, next) => {
-
-
-
     const pageSize = +req.query.pagesize;
     const currentPage = +req.query.page;
     const companyQuery = Company.find();
     let companyQueryCount = Company.find();
-
     const keywords = req.query.keywords;
     const keywordArray = keywords.split(' ').map(keyword => new RegExp(keyword, 'i'));
 
@@ -183,7 +179,7 @@ exports.filtrerCompanies = (req, res, next) => {
         .then(function (models) {
             count = models.length
         }).then(_ => {
-            companyQuery.sort({ date: 'desc' })
+            companyQuery.sort({ name: 'asc' })
 
             if (pageSize && currentPage) {
                 companyQuery.skip(pageSize * (currentPage - 1)).limit(pageSize);

@@ -2,3 +2,15 @@
     color: white;
 }
 
+.img-top{
+    height:120px;width:120px;margin-right: 20px;
+}
+.img-mid{
+    height:120px;width:120px;
+}
+.sidebar-box-detail{
+    text-align: left;
+    font-size: 18px;
+    padding: 10px 30px;
+    line-height: 30px;
+}

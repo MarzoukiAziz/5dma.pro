@@ -5,7 +5,8 @@
 <!-- Title Header Start -->
 <section class="inner-header-title" style="background-image:url(assets/img/banner-10.jpg);">
     <div class="container">
-        <h1>Les Offres</h1>
+        <h1>Les Offres <sup><span class="badge" style="    background-color: #11b719;
+            font-size: 25px;">{{jobsCount}}</span></sup></h1>
     </div>
 </section>
 <div class="clearfix"></div>
@@ -90,9 +91,10 @@
                                 </div>
 
                             </ul>
-                            <ul>
-                                <div style="margin: auto !important;">
-                                    <p>{{transform(j.date)}}</p>
+                            <ul style="padding: 0px;">
+                                <div style="margin: auto !important;padding: 0px;">
+                                    <p> <img src="assets/img/clock.png" class="img" alt="" style="height: 15px;" />
+                                        &nbsp;&nbsp;{{transform(j.date)}}</p>
                                 </div>
                             </ul>
                             <span *ngIf="ids.includes(j._id)" class="tg-themetag tg-featuretag">Candidate</span>

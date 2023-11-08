@@ -118,13 +118,15 @@ export class AccountComponent implements OnInit {
     if (months > 0) {
       result += `il y a ${months} mois`;
     } else if (days == 1) {
-      result += `hier`;
+      result += `hier `;
     } else if (days > 1) {
-      result += `il y a ${days} jours`;
-    } else if (days == 0 && hours >= 1) {
-      result += `il y a ${hours} heures`;
+      result += `il y a ${days} jours `;
+    } else if (days == 0 && hours == 1) {
+      result += `il y a ${hours} heure `;
+    } else if (days == 0 && hours > 1) {
+      result += `il y a ${hours} heures `;
     } else if (minutes > 0 && hours == 0) {
-      result += `il y a ${minutes} minutes`;
+      result += `il y a ${minutes} minutes `;
     }
 
     if (result === '') {

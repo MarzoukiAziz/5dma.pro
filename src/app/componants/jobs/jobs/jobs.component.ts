@@ -141,7 +141,9 @@ export class JobsComponent implements OnInit, OnDestroy {
       result += `hier `;
     } else if (days > 1) {
       result += `il y a ${days} jours `;
-    } else if (days == 0 && hours >= 1) {
+    } else if (days == 0 && hours == 1) {
+      result += `il y a ${hours} heure `;
+    } else if (days == 0 && hours > 1) {
       result += `il y a ${hours} heures `;
     } else if (minutes > 0 && hours == 0) {
       result += `il y a ${minutes} minutes `;

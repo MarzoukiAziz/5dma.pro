@@ -41,7 +41,6 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { DialogComponent } from './componants/jobs/dialog/dialog.component';
 import { PlansComponent } from './componants/services/plans/plans.component';
 import { MatGridListModule } from '@angular/material/grid-list';
-import { JobteaserScrapperComponent } from './componants/admin/jobs/jobteaser-scrapper/jobteaser-scrapper.component';
 
 @NgModule({
   declarations: [
@@ -74,7 +73,6 @@ import { JobteaserScrapperComponent } from './componants/admin/jobs/jobteaser-sc
     NotfoundComponent,
     DialogComponent,
     PlansComponent,
-    JobteaserScrapperComponent,
   ],
   imports: [
     BrowserModule,
