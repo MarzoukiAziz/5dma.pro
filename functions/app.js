@@ -6,6 +6,7 @@ const companyRoutes = require("./routes/companies");
 const jobRoutes = require("./routes/jobs");
 const userRoutes = require("./routes/user");
 const appsRoutes = require("./routes/apps");
+const resumeRoutes = require("./routes/resume");
 const searchsRoutes = require("./routes/searchs");
 const functions = require('firebase-functions');
 
@@ -52,6 +53,8 @@ app.use("/api/jobs", jobRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/apps", appsRoutes);
 app.use("/api/searchs", searchsRoutes);
+app.use("/api/resume", resumeRoutes);
+
 
 app.use((req, res, next) => {
     res.sendFile(path.join(__dirname, "angular", "index.html"));

@@ -51,7 +51,7 @@
             </div>
         </div>
         <div class="sidebar-container">
-            <div class="sidebar-box" routerLink="/entreprise/{{job.company._id}}">
+            <div class="sidebar-box">
                 <div class="sidebar-inner-box">
                     <span *ngIf="applied" style="color: red;font-weight: 700;">Déja
                         Candidaté</span><br><br>
@@ -62,7 +62,8 @@
 
                     <br><br><br>
                     <div>
-                        <img src="{{job.company.icon}}" class="img-mid" alt="" />
+                        <img routerLink="/entreprise/{{job.company._id}}" src="{{job.company.icon}}" class="img-mid"
+                            alt="" />
                     </div>
                     <br>
                     <div class="sidebar-box-detail">

@@ -8,7 +8,6 @@ router.post("/scrapper", JobController.createJobFromScrapper);
 
 router.post("", JobController.createJob);
 router.put("/:id", checkAuth, JobController.updateJob);
-router.get("/all", checkAuth, JobController.getAllJobs);
 router.get("/filtrer", JobController.filtrerJobs);
 router.get("", JobController.getJobs);
 router.get("/:id", JobController.getJob);

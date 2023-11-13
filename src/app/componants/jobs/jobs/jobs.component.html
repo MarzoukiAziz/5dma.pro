@@ -59,7 +59,7 @@
             <div *ngIf="loading ==false">
 
                 <div *ngFor="let j of jobs" class="col-md-4 col-sm-6" v>
-                    <a routerLink="/offre/{{j._id}}">
+                    <a href="/offre/{{j._id}}" target="_blank">
                         <div class="grid-view brows-job-list"
                             [style]="ids.includes(j._id)?'border: 1px solid #00000030;background-color: #00000010;':'border: 1px solid #00000030;'">
                             <div style="height: 250px;">

@@ -110,7 +110,7 @@
                                             <p><i class="fa fa-map-marker"></i> {{a.job.location}}</p>
                                         </div>
                                     </div>
-                                    <div class="col-md-4 col-sm-4">
+                                    <div class="col-md-3 col-sm-3">
                                         <div class="mng-company-action">
                                             <select style="border-radius: 10px;" class="form-control input-lg"
                                                 [(ngModel)]="a.status" name="type" (change)="updateStatus(a)">
@@ -126,6 +126,11 @@
                                             </select>
 
                                         </div>
+                                    </div>
+                                    <div class="col-md-1 col-sm-1">
+
+                                        <a (click)="delete(a)"><i style="color: red;" class="fa fa-trash"></i></a>
+
                                     </div>
                                 </div>
                             </article>

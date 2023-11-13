@@ -164,35 +164,6 @@ exports.filtrerJobs = (req, res, next) => {
 
 
 
-exports.getAllJobs = (req, res, next) => {
-    const pageSize = +req.query.pagesize;
-    const currentPage = +req.query.page;
-    const jobQuery = Job.find();
-    let fetchedJobs;
-    if (pageSize && currentPage) {
-        jobQuery.skip(pageSize * (currentPage - 1)).limit(pageSize);
-    }
-    jobQuery
-        .populate('company')
-        .sort({ date: 'desc' })
-        .then(documents => {
-            fetchedJobs = documents;
-            return Job.count();
-        })
-        .then(count => {
-            res.status(200).json({
-                message: "Jobs fetched successfully!",
-                jobs: fetchedJobs,
-                maxJobs: count
-            });
-        })
-        .catch(error => {
-            res.status(500).json({
-                message: "Fetching Jobs failed!"
-            });
-        });
-};
-
 exports.getJob = (req, res, next) => {
     Job.findById(req.params.id)
         .populate('company')

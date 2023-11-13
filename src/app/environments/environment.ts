@@ -4,8 +4,8 @@
 
 export const environment = {
   production: true,
-  apiUrl: 'https://us-central1-khdma-3d506.cloudfunctions.net/app/api',
-  // apiUrl: 'http://localhost:3000/api',
+  // apiUrl: 'https://us-central1-khdma-3d506.cloudfunctions.net/app/api',
+  apiUrl: 'http://localhost:3000/api',
 };
 
 /*

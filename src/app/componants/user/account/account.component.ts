@@ -141,4 +141,17 @@ export class AccountComponent implements OnInit {
       this.toastr.success('', 'Modification Sauvgardé!');
     });
   }
+
+  delete(app: App) {
+    const result = window.confirm('Vous êtes sûr de supprimer?');
+
+    if (result) {
+      this.appService.deleteApp(app._id).subscribe((res) => {
+        this.getData();
+        this.getCount();
+        this.toastr.success('', 'Supprimé avec succés!');
+      });
+    } else {
+    }
+  }
 }
