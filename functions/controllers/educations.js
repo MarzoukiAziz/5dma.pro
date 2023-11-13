@@ -1,15 +1,18 @@
 const User = require("../models/user");
 
 // Add education
-async function addEducation(userId, educationData) {
+exports.addEducation = async (req, res) => {
     try {
+        const userId = req.params.userId;
+        const data = req.body;
+
         const user = await User.findById(userId);
 
         if (!user) {
             throw new Error("User not found");
         }
 
-        user.education.push(educationData);
+        user.education.push(data);
 
         await user.save();
 
@@ -21,8 +24,13 @@ async function addEducation(userId, educationData) {
 }
 
 // Update education
-async function updateEducation(userId, educationId, educationData) {
+exports.putEducation = async (req, res) => {
     try {
+
+        const userId = req.params.userId;
+        const educationId = req.params.educationId;
+        const data = req.body;
+
         const user = await User.findById(userId);
 
         if (!user) {
@@ -35,7 +43,7 @@ async function updateEducation(userId, educationId, educationData) {
             throw new Error("Education not found");
         }
 
-        education.set(educationData);
+        education.set(data);
 
         await user.save();
 
@@ -47,8 +55,11 @@ async function updateEducation(userId, educationId, educationData) {
 }
 
 // Delete education
-async function deleteEducation(userId, educationId) {
+exports.deleteEducation = async (req, res) => {
     try {
+        const userId = req.params.userId;
+        const educationId = req.params.educationId;
+
         const user = await User.findById(userId);
 
         if (!user) {
@@ -66,8 +77,3 @@ async function deleteEducation(userId, educationId) {
     }
 }
 
-module.exports = {
-    addEducation,
-    updateEducation,
-    deleteEducation,
-};

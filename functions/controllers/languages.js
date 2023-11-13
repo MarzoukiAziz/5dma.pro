@@ -1,8 +1,11 @@
 const User = require("../models/user");
 
 // Add language
-async function addLanguage(userId, languageData) {
+exports.addLanguage = async (req, res) => {
     try {
+        const userId = req.params.userId;
+        const languageData = req.body;
+
         const user = await User.findById(userId);
 
         if (!user) {
@@ -20,35 +23,11 @@ async function addLanguage(userId, languageData) {
     }
 }
 
-// Update language
-async function updateLanguage(userId, languageId, languageData) {
-    try {
-        const user = await User.findById(userId);
-
-        if (!user) {
-            throw new Error("User not found");
-        }
-
-        const language = user.languages.id(languageId);
-
-        if (!language) {
-            throw new Error("Language not found");
-        }
-
-        language.set(languageData);
-
-        await user.save();
-
-        return { message: "Language updated successfully", user: user };
-    } catch (error) {
-        console.error(error);
-        throw new Error("Internal server error");
-    }
-}
-
 // Delete language
-async function deleteLanguage(userId, languageId) {
+exports.deleteLanguage = async (req, res) => {
     try {
+        const userId = req.params.userId;
+        const languageId = req.params.languageId;
         const user = await User.findById(userId);
 
         if (!user) {
@@ -65,9 +44,3 @@ async function deleteLanguage(userId, languageId) {
         throw new Error("Internal server error");
     }
 }
-
-module.exports = {
-    addLanguage,
-    updateLanguage,
-    deleteLanguage,
-};

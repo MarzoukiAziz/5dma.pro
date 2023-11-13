@@ -8,22 +8,20 @@ const checkAuth = require("../middleware/check-auth");
 
 const router = express.Router();
 
-router.post("/edu", checkAuth, educationController.addEducation);
-router.put("/edu/:id", checkAuth, educationController.updateEducation);
-router.delete("/edu/:id", checkAuth, educationController.deleteEducation);
+router.post("/edu/:userId", checkAuth, educationController.addEducation);
+router.put("/edu/:userId/:educationId", checkAuth, educationController.updateEducation);
+router.delete("/edu/:userId/:educationId", checkAuth, educationController.deleteEducation);
 
-router.post("/skill", checkAuth, skillController.addSkill);
-router.put("/skill/:id", checkAuth, skillController.updateSkill);
-router.delete("/skill/:id", checkAuth, skillController.deleteSkill);
+router.post("/skill/:userId", checkAuth, skillController.addSkill);
+router.delete("/skill/:userId/:skillId", checkAuth, skillController.deleteSkill);
 
 
-router.post("/exp", checkAuth, experienceController.addExperience);
-router.put("/exp/:id", checkAuth, experienceController.updateExperience);
-router.delete("/exp/:id", checkAuth, experienceController.deleteExperience);
+router.post("/exp/:userId", checkAuth, experienceController.addExperience);
+router.put("/exp/:userId/:experienceId", checkAuth, experienceController.updateExperience);
+router.delete("/exp/:userId/:experienceId", checkAuth, experienceController.deleteExperience);
 
-router.post("/lang", checkAuth, languageController.addLanguage);
-router.put("/lang/:id", checkAuth, languageController.updateLanguage);
-router.delete("/lang/:id", checkAuth, languageController.deleteLanguage);
+router.post("/lang/:userId", checkAuth, languageController.addLanguage);
+router.delete("/lang/:userId/:languageId", checkAuth, languageController.deleteLanguage);
 
 
 

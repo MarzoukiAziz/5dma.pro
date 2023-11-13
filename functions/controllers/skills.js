@@ -1,8 +1,11 @@
 const User = require("../models/user");
 
 // Add skill
-async function addSkill(userId, skillName) {
+exports.addSkill = async (req, res) => {
     try {
+        const skillName = req.params.skillName;
+        const userId = req.params.userId;
+
         const user = await User.findById(userId);
 
         if (!user) {
@@ -20,42 +23,19 @@ async function addSkill(userId, skillName) {
     }
 }
 
-// Update skill
-async function updateSkill(userId, skillId, skillName) {
-    try {
-        const user = await User.findById(userId);
-
-        if (!user) {
-            throw new Error("User not found");
-        }
-
-        const skill = user.skills.id(skillId);
-
-        if (!skill) {
-            throw new Error("Skill not found");
-        }
-
-        skill.set({ name: skillName });
-
-        await user.save();
-
-        return { message: "Skill updated successfully", user: user };
-    } catch (error) {
-        console.error(error);
-        throw new Error("Internal server error");
-    }
-}
-
 // Delete skill
-async function deleteSkill(userId, skillId) {
+exports.deleteSkill = async (req, res) => {
     try {
+        const skillName = req.params.skillName;
+        const userId = req.params.userId;
+
         const user = await User.findById(userId);
 
         if (!user) {
             throw new Error("User not found");
         }
 
-        user.skills.id(skillId).remove();
+        user.skills.remove(skillName);
 
         await user.save();
 
@@ -66,8 +46,3 @@ async function deleteSkill(userId, skillId) {
     }
 }
 
-module.exports = {
-    addSkill,
-    updateSkill,
-    deleteSkill,
-};
